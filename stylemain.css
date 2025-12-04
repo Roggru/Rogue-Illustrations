@@ -3,6 +3,7 @@
 html{
     height: 100%;}
 body{
+    /*! Make it full on the page. */
     background-color: #1b1b1d;
     background-position: center;
     color: #FFFFFF;

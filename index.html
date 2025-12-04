@@ -84,6 +84,11 @@
                     const img2 = box.querySelector(".i3-2");
                     const link = document.getElementById("randomLink");
                     const overlay = document.getElementById("shift-screen");
+                    window.addEventListener("pageshow", () => {
+                        overlay.classList.remove("shift-screen-show");
+                        document.body.style.overflow = "";
+                    });
+
                     box.addEventListener("mouseenter", () => {
                         img1.style.opacity = 0;
                         img2.style.opacity = 1;
