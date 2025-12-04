@@ -60,6 +60,19 @@ align-items: start;}
     transition: all .3s ease-in-out;}
     .display a{
         text-decoration: none;}
+.db-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    gap: 7rem;
+}
+.db-list img, .db-list h2{
+    flex: 1;
+} 
+    .db-list img{
+        transform: scale(.8);
+    }
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 img{
@@ -71,7 +84,6 @@ img{
     transition: all .3s ease-in-out;
 }
 .display-move img{
-    /*! Fix padding in between the images. */
     width: 18vw;
     aspect-ratio: 420 / 580;
     padding-top: 2vh;
@@ -81,6 +93,7 @@ img{
     }
     .display-move figcaption{
         color: #FFFFFF;
+        font-size: 16px;
         transition: all .3s ease-in-out;
     }
         .display-move:hover figcaption{
