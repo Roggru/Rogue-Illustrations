@@ -3,7 +3,6 @@
 html{
     height: 100%;}
 body{
-    /*! Make it full on the page. */
     background-color: #1b1b1d;
     background-position: center;
     color: #FFFFFF;
@@ -30,7 +29,7 @@ body{
 .divider-line{
     height: 2px;
     background-color: #ffffff25;
-    width: 60vw;
+    width: 55vw;
     margin: 0 auto;}
 .container-1{
     margin-left: auto;
@@ -51,7 +50,6 @@ align-items: start;}
     .item-1{grid-area: 3 / 4 / 6 / 6; padding-left: 30px;}
     .item-2{grid-area: 3 / 4 / 8 / 6; padding-left: 30px;}
     .item-3{grid-area: 4 / 5 / 1 / 1; position: relative; display: inline-block; top: -300px;}
-
 .display{
     display: flex;
     flex-direction: row;
@@ -71,7 +69,8 @@ img{
     transition: all .3s ease-in-out;
 }
 .display-move img{
-    width: 19vw;
+    /*! Fix padding in between the images. */
+    width: 18vw;
     aspect-ratio: 420 / 580;
     padding-top: 2vh;
 }
@@ -86,6 +85,8 @@ img{
             transform: translateY(12px) scale(1.3);
         }
 .clickable{
+    width: 22vw;
+    max-width: 850px;
     transition: all .3s ease-in-out;
 }
     .clickable:hover{
@@ -101,9 +102,8 @@ img{
     .i3-2{
         opacity: 0;
     }
-/* ! .item-3:hover .i3-1{
-    opacity: 0;
-}
+/* ? .item-3:hover .i3-1{
+    opacity: 0;}
 .item-3:hover .i3-2{
     opacity: 1;
 } */
@@ -156,7 +156,8 @@ img{
 nav{
     text-align: center;
     padding-bottom: 15px;
-    /* position: sticky; top: 0px; */
+    background-color: aqua;
+    /*! position: sticky; top: 0px; */
 }
 nav a{
     color: #FFFFFF;
