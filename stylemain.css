@@ -39,7 +39,8 @@ body{
     margin-top: 50px;
     margin-bottom: 80px;
     padding-bottom: 50px;
-    /* background-color: rgba(255, 150, 0, 0.05); */}
+    /* background-color: rgba(255, 150, 0, 0.05); */
+}
 .container-2{
 display: grid;
 grid-template-columns: repeat(12, 1fr);
@@ -66,6 +67,7 @@ img{
     height: 30%;
 }
 .display-move{
+    margin: 20px;
     transition: all .3s ease-in-out;
 }
 .display-move img{
@@ -96,7 +98,7 @@ img{
     position: absolute;
     height: auto;
     width: auto;
-    transform: scale(.5);
+    transform: scale(.55);
     transition: opacity 1.5s ease-in-out;
 }
     .i3-2{
@@ -156,7 +158,7 @@ img{
 nav{
     text-align: center;
     padding-bottom: 15px;
-    /*! position: sticky; top: 0px; */
+    /*? position: sticky; top: 0px; */
 }
 nav a{
     color: #FFFFFF;
