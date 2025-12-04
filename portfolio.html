@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogue Illustrations - Portfolio</title>
+    <link rel="stylesheet" href="stylemain.css">
+    <link rel="stylesheet" href="styleportfolio.css">
+</head>
+
+<body>
+<script src="scripts.js"></script>
+
+<button onclick="goBack()" class="back">
+    <img src="Images/back.png" alt="Back">
+</button>
+
+<div class="container-all-port">
+    <div class="container-header">
+            <h2>Portfolio</h2>
+        <p class="subtext">Explore all that is uncategorized, unlost, and unforgotten. Every piece has a story.</p>
+        <div class="divider-line"></div>
+    </div>
+
+    <div class="button-space">
+            <button id="swapBtn"
+                onclick="swap()" 
+                style="font-family: Cormorant SC; transform: scale(1.8); background-color: #ffffff10; color: #FFFFFF; border: #FFFFFF; margin-top: 50px;">
+                Give me Everything
+            </button>
+            <script>
+                const btn = document.getElementById("swapBtn");
+                btn.addEventListener("click", () => {
+                    const current = btn.textContent.trim();
+                    btn.textContent = current === "Give me Everything"
+                    ? "Only Filtered"
+                    : "Give me Everything";
+                });
+            </script>
+        </div>
+
+    <div class="portfolio">
+        <img class="long" src="Images/Art/Reprisal.jpg" alt="">
+        <img src="Images/Art/The Second Virago.jpg" alt="">
+        <img src="Images/Art/Dragon Blue.jpg" alt="">
+        <img src="Images/Art/Humanity.jpg" alt="">
+        <img src="Images/Art/Beauty.jpg" alt="">
+        <img class="long" src="Images/Art/World Walker.jpg" alt="">
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-outer"></div>
+        <div class="lightbox-inner">
+            <img id="lightbox-img" src="#" alt="">
+        </div>
+    </div>
+    <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const outer = document.querySelector(".lightbox-outer");
+
+        document.querySelectorAll(".portfolio img").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("show");
+            });
+        });
+        lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("show");
+        });
+        outer.addEventListener("click", () => {
+        lightbox.classList.remove("show");
+        });
+    </script>
+
+</div>
+</body>
+</html>

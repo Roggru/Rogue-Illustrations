@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogue Illustrations</title>
+    <link rel="stylesheet" href="stylemain.css">
+</head>
+
+<body>
+<script src="scripts.js"></script>
+
+
+<div id="shift-screen" class="shift-screen">
+    <h3>Good luck.</h3>
+</div>
+
+<!-- <div>
+    <div>
+        <img class="BeastsO" src="Images/Beasts Overlay.png" alt="">
+        <div class="gradient"></div>
+    </div>
+</div> -->
+
+<div class="container-all">
+
+    <div class="container-header">   
+        <header><h1>Rogue Illustrations</h1></header>
+        <nav>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="#">Daemons</a>
+            <a href="divinebeings.html">Divine Beings</a>
+            <a href="#">Beasts</a>
+        </nav>
+        <div class="divider-line"></div>
+    </div>
+
+
+    <main>
+        <div class="container-1">
+            <h3>Explore the World</h3>
+            <div class="display">
+                <a href="">
+                    <figure class="display-move">
+                        <img src="Images/Art/The Baron.png" alt="Daemons">
+                        <figcaption>Daemons</figcaption>
+                    </figure>
+                </a>
+                <a href="divinebeings.html">
+                    <figure class="display-move">
+                        <img src="Images/Art/Prime of the Quintessential.jpg" alt="Divine Beings">
+                        <figcaption>Divine Beings</figcaption>
+                    </figure>
+                </a>
+                <a href="">
+                    <figure class="display-move">
+                        <img src="Images/Art/Athebyne.jpg" alt="Beasts">
+                        <figcaption>Beasts</figcaption>
+                    </figure>
+                </a>
+            </div>
+        </div>
+
+        <div class="container-1">
+            <h3>Portfolio</h3>
+            <a href="portfolio.html">
+                <img class="clickable" src="Images/Art/The Second Virago.jpg" alt="Portfolio">
+            </a>
+        </div>
+        
+        <div class="container-1">
+            <h3>Or...</h3>
+            <div class="container-2">
+                <div class="item-1"><p>Take me to a place and let me</p></div>
+                <div class="item-2"><h3>Wander</h3></div>      
+                <div class="item-3" id="shift">
+                    <a href="#" id="randomLink">
+                        <img class="i3-1" src="Images/Knight-Wander Beginning.png" alt="Go Forth">
+                        <img class="i3-2" src="Images/Knight-Wander Go.png" alt="">
+                    </a>
+                    <script>
+                    const box = document.getElementById("shift");
+                    const img1 = box.querySelector(".i3-1");
+                    const img2 = box.querySelector(".i3-2");
+                    const link = document.getElementById("randomLink");
+                    const overlay = document.getElementById("shift-screen");
+                    box.addEventListener("mouseenter", () => {
+                        img1.style.opacity = 0;
+                        img2.style.opacity = 1;
+                    });
+                    box.addEventListener("mouseleave", () => {
+                        img1.style.opacity = 1;
+                        img2.style.opacity = 0;
+                    });
+                        const pages = ["portfolio.html", "end.html", "divinebeings.html"];
+                        link.addEventListener("click", event => {
+                            event.preventDefault();
+
+                            overlay.classList.add("shift-screen-show");
+                            document.body.style.overflow = "hidden";
+
+                            setTimeout(() => {
+                                const randomIndex = Math.floor(Math.random() * pages.length);
+                                window.location.href = pages[randomIndex];
+                            }, 4000);
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-1">
+            <div class="divider-line"></div>
+            <p style="width: 800px; margin: auto; padding-top: 40px;">“This is the World,” he said. “Of beasts of burden, of the daemons of dread, gods of glory, and every man to our humankind; just one fiber to a grandeur figure.” Now I know; that these are stories told of tales and myth—linked altogether in one running breath. We share our hate, our spite and tears, our pain and dread. Yet, so too our joy, our contentedness and love all the same. It is through these stories that we are more alike the further we seem to be.</p>
+            <p>This is the World. “Being” is the common language, and here it will sing:</p>
+            <p style="font-style: italic;">Good things. Good luck.</p>
+            <img src="Images/Roots.png" alt="">
+        </div>
+
+        
+    </main>
+</div>
+
+
+
+<div>
+    <div class="cease">
+        <a href="">
+            <img src="Images/Placeholder.jpg" alt="—Cease this Journey—">
+        </a>
+    </div>
+    <script>
+        // localStorage.setItem("featureEnabled", "true");
+        // if (localStorage.getItem("featureEnabled") === "true") {
+        // console.log("Feature is enabled!");}
+    </script>
+</div>
+</body>
+
+</html>
