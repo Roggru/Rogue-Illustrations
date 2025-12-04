@@ -85,8 +85,12 @@
                     const link = document.getElementById("randomLink");
                     const overlay = document.getElementById("shift-screen");
                     window.addEventListener("pageshow", () => {
+                        overlay.classList.add("no-transition");
                         overlay.classList.remove("shift-screen-show");
                         document.body.style.overflow = "";
+                        requestAnimationFrame(() => {
+                            overlay.classList.remove("no.transition");
+                        });
                     });
 
                     box.addEventListener("mouseenter", () => {
