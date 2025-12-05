@@ -1,7 +1,8 @@
 .container-all-port{
     margin-left: auto;
     margin-right: auto;
-    width: 85vw;
+    width: 75vw;
+    min-width: 1500px;
     font-family: "Cormorant SC", serif;
     opacity: 0;
     transform: translateY(15px);
@@ -12,7 +13,7 @@
             transform: translateY(0);
         }}
 
-/* .portfolio{
+/*! .portfolio{
     margin-top: 25px;
     margin-bottom: 25px;
     display:flex;
@@ -28,7 +29,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: masonry;
     padding-bottom: 50px;
-    gap: 50px;
+    gap: 40px;
 }
 .portfolio img{
     width: 100%;

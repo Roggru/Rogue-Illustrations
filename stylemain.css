@@ -12,7 +12,6 @@ body{
     margin-right: auto;
     width: 1400px;
     font-family: "Cormorant SC", serif;
-    opacity: 0;
     transform: translateY(15px);
     animation: slideUp .5s ease-out forwards;}
     @keyframes slideUp{
@@ -64,12 +63,26 @@ align-items: start;}
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 70vw;
     padding: 2rem;
-    gap: 7rem;}
+    gap: 5rem;}
 .db-list img, .db-list h2{
     flex: 1;} 
     .db-list img{
         transform: scale(.8);}
+.column{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;}
+.c2{
+    transform: translateY(120px);}
+.column figure{
+    padding-top: 40px;
+    padding-bottom: 40px;}
+    .column img{
+        width: 20vw;
+        min-width: 400px;}
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 img{
@@ -187,6 +200,7 @@ nav a{
     }
 a{
     color: #FFFFFF;
+    text-decoration-thickness: 1px;
 }
 
 
@@ -215,6 +229,8 @@ h4{
 }
 .subtext{
     text-align: center;
+    margin: auto;
+    width: 1220px;
 }
 p{
     font-family: "Cormorant Garamond", serif;
