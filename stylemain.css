@@ -4,7 +4,7 @@ html{
     height: 100%;}
 body{
     background-color: #1b1b1d;
-    background-position: center;
+    
     color: #FFFFFF;
     font-family: "Cormorant SC", serif;}
 .container-all{
@@ -64,15 +64,12 @@ align-items: start;}
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem;
-    gap: 7rem;
-}
+    padding: 2rem;
+    gap: 7rem;}
 .db-list img, .db-list h2{
-    flex: 1;
-} 
+    flex: 1;} 
     .db-list img{
-        transform: scale(.8);
-    }
+        transform: scale(.8);}
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 img{
@@ -188,6 +185,9 @@ nav a{
         text-decoration: underline;
         transform: scale(1.1);
     }
+a{
+    color: #FFFFFF;
+}
 
 
 h1{
