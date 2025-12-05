@@ -4,7 +4,9 @@ function goBack(){
 }
 
 // Wanderer:
-const cordImageSrc = "Images/Knight-Wander-3.png";
+const script = document.currentScript;
+const scriptFolder = script.src.substring(0, script.src.lastIndexOf("/"));
+const cordBaseImage = scriptFolder + "/Knight-Wander-3.png";
 
 function enableCord() {
     localStorage.setItem("cordEnabled", "true");
@@ -16,7 +18,7 @@ function updateCordVisibility() {
     if (!cord) return;
 
     const cordImg = cord.querySelector("img");
-    if (cordImg) cordImg.src = cordImageSrc;
+    if (cordImg) cordImg.src = cordBaseImage;
 
     const currentPage = window.location.pathname.split("/").pop();
     const isIndex = currentPage === "index.html" || currentPage === "";
@@ -28,8 +30,9 @@ function updateCordVisibility() {
         return;
     }
 
-    const hidden = sessionStorage.getItem("cordHidden") === "true";
     const enabled = localStorage.getItem("cordEnabled") === "true";
+    const hidden = sessionStorage.getItem("cordHidden") === "true";
+
     cord.style.display = enabled && !hidden ? "block" : "none";
 
     if (cordImg) {
@@ -41,3 +44,4 @@ function updateCordVisibility() {
 }
 
 document.addEventListener("DOMContentLoaded", updateCordVisibility);
+
