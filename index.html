@@ -103,8 +103,10 @@
                         img2.style.opacity = 0;
                     });
                         const pages = ["portfolio.html", "end.html", "divinebeings.html"];
+                        
                         link.addEventListener("click", event => {
                             event.preventDefault();
+                            enableCord();
 
                             overlay.classList.add("shift-screen-show");
                             document.body.style.overflow = "hidden";
@@ -133,17 +135,10 @@
 
 
 
-<div>
-    <div class="cease">
-        <a href="">
-            <img src="Images/Placeholder.jpg" alt="—Cease this Journey—">
-        </a>
-    </div>
-    <script>
-        // localStorage.setItem("featureEnabled", "true");
-        // if (localStorage.getItem("featureEnabled") === "true") {
-        // console.log("Feature is enabled!");}
-    </script>
+<div class="cord">
+    <a href="">
+        <img alt="—Cease this Journey—">
+    </a>
 </div>
 </body>
 
