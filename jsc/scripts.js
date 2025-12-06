@@ -47,41 +47,30 @@ function goBack(){
 const cordImageFilename = "Knight-Wander-3.png";
 
 function getThisScriptUrl() {
-  if (document.currentScript && document.currentScript.src) {
-    return document.currentScript.src;
-  }
-
+  if (document.currentScript?.src) return document.currentScript.src;
   const scripts = document.getElementsByTagName("script");
   for (let i = scripts.length - 1; i >= 0; i--) {
-    const s = scripts[i].src || "";
-    if (!s) continue;
-    if (s.includes("/jsc/") || s.endsWith("/scripts.js") || s.endsWith("/cord.js")) {
-      return s;
+    const src = scripts[i].src || "";
+    if (src.includes("/jsc/") || src.endsWith("/scripts.js") || src.endsWith("/cord.js")) {
+      return src;
     }
   }
-
-  const last = scripts[scripts.length - 1];
-  return (last && last.src) ? last.src : "";
+  return "";
 }
 
 function getScriptFolder() {
-  const scriptUrl = getThisScriptUrl();
-  if (!scriptUrl) return "";
-
-  const decoded = decodeURIComponent(scriptUrl);
-  const clean = decoded.split(/[?#]/)[0];
-  return clean.substring(0, clean.lastIndexOf("/"));
+  const url = getThisScriptUrl();
+  if (!url) return "";
+  return decodeURIComponent(url).split(/[?#]/)[0].replace(/\/[^/]*$/, "");
 }
 
 function getCordImagePath() {
   const folder = getScriptFolder();
-  if (folder) {
-    return folder + "/" + cordImageFilename;
-  }
-  return "jsc/" + cordImageFilename;
+  return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
 }
 
 function enableCord() {
+  if (localStorage.getItem("cordBurned") === "true") return;
   localStorage.setItem("cordEnabled", "true");
 }
 
@@ -90,32 +79,35 @@ function updateCordVisibility() {
   if (!cord) return;
 
   const cordImg = cord.querySelector("img");
-  if (cordImg) {
-    cordImg.src = getCordImagePath();
+  if (cordImg) cordImg.src = getCordImagePath();
+
+  const page = window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
+  const isIndex = page === "" || page === "index.html";
+
+  if (isIndex) {
+    localStorage.removeItem("cordEnabled");
+    cord.style.display = "none";
+    return;
   }
 
-  const currentPage =
-    window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
-  const isIndex = currentPage === "" || currentPage === "index.html";
-
-if (isIndex) {
-  localStorage.removeItem("cordEnabled");
-  cord.style.display = "none";
-  return;
-}
-
   cord.style.display =
-    localStorage.getItem("cordEnabled") === "true"
+    localStorage.getItem("cordEnabled") === "true" &&
+    localStorage.getItem("cordBurned") !== "true"
       ? "block"
       : "none";
 
-  if (cordImg) {
+  if (cordImg && !cordImg.dataset.bound) {
+    cordImg.dataset.bound = "true";
     cordImg.addEventListener("click", () => {
       localStorage.removeItem("cordEnabled");
+      localStorage.setItem("cordBurned", "true");
       cord.style.display = "none";
     });
   }
 }
-window.addEventListener("load", updateCordVisibility);
+window.addEventListener("pageshow", updateCordVisibility);
+
+
+
 
 
