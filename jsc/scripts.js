@@ -29,8 +29,7 @@ function setupRandomLink() {
 
     link.addEventListener("click", (event) => {
         event.preventDefault();
-
-        enableCord();
+        localStorage.setItem("cordEnabled", "true");
 
         overlay.classList.add("shift-screen-show");
         document.body.style.overflow = "hidden";
@@ -40,73 +39,36 @@ function setupRandomLink() {
             window.location.href = pages[randomIndex];
         }, 4000);
     });
-
-    window.addEventListener("pageshow", () => {
-        overlay.classList.remove("shift-screen-show");
-        document.body.style.overflow = "";
-    });
 }
-document.addEventListener("DOMContentLoaded", () => {
-    setupRandomLink();
-});
+
+
 
 //!Venture
-function getScriptFolder() {
-    const scripts = document.getElementsByTagName("script");
-    const src = scripts[scripts.length - 1]?.src || "";
-    return src ? decodeURIComponent(src).split(/[?#]/)[0].replace(/\/[^/]*$/, "") : "";
+function showCord() {
+  const cord = document.querySelector(".cord");
+  if (!cord) return;
+
+  const cordImg = cord.querySelector("img");
+  if (!cordImg) return;
+
+  // Always use root-relative path
+  cordImg.src = `/jsc/${cordImageFilename}`;
+
+  cord.style.display = "block"; // force show for testing
+  cordImg.onload = () => console.log("Cord image loaded successfully!");
+  cordImg.onerror = () => console.error("Failed to load cord image at:", cordImg.src);
+
+  // Click to "burn" the cord
+  if (!cord.dataset.bound) {
+    cord.dataset.bound = "true";
+    cord.addEventListener("click", (e) => {
+      e.preventDefault();
+      cord.style.display = "none";
+    });
+  }
 }
 
-function getCordImagePath() {
-    const folder = getScriptFolder();
-    return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
-}
-
-function enableCord() {
-    if (localStorage.getItem("cordBurned") !== "true") {
-        localStorage.setItem("cordEnabled", "true");
-    }
-}
-
-function updateCordVisibility() {
-    const cord = document.querySelector(".cord");
-    if (!cord) return;
-
-    const cordImg = cord.querySelector("img");
-    if (cordImg) cordImg.src = getCordImagePath();
-
-    const page = window.location.pathname.split("/").pop().toLowerCase();
-    const isIndex = page === "" || page === "index.html";
-    const isCordPage = cordPages.some(p => p.toLowerCase().endsWith(page));
-
-    if (isIndex) {
-        localStorage.removeItem("cordEnabled");
-        localStorage.setItem("cordBurned", "true");
-        cord.style.display = "none";
-        return;
-    }
-
-    const showCord =
-        localStorage.getItem("cordEnabled") === "true" &&
-        localStorage.getItem("cordBurned") !== "true" &&
-        isCordPage;
-
-    cord.style.display = showCord ? "block" : "none";
-
-    if (cordImg && !cord.dataset.bound) {
-        cord.dataset.bound = "true";
-        cord.addEventListener("click", (e) => {
-            e.preventDefault();
-            localStorage.removeItem("cordEnabled");
-            localStorage.setItem("cordBurned", "true");
-            cord.style.display = "none";
-        });
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateCordVisibility();
-});
+document.addEventListener("DOMContentLoaded", showCord);
 
 
 
@@ -116,7 +78,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// Wanderer:
+// function getScriptFolder() {
+//     const scripts = document.getElementsByTagName("script");
+//     const src = scripts[scripts.length - 1]?.src || "";
+//     return src ? decodeURIComponent(src).split(/[?#]/)[0].replace(/\/[^/]*$/, "") : "";
+// }
+
+// function getCordImagePath() {
+//     const folder = getScriptFolder();
+//     return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
+// }
+
+// function updateCordVisibility() {
+//     const cord = document.querySelector(".cord");
+//     if (!cord) return;
+
+//     const cordImg = cord.querySelector("img");
+//     if (!cordImg) return;
+
+//     cordImg.src = getCordImagePath();
+
+//     const pageFilename = window.location.pathname.split("/").pop().toLowerCase();
+//     const pageIsIndex = pageFilename === "" || pageFilename === "index.html";
+
+//     const normalizedPages = pages.map(p => p.split("/").pop().toLowerCase());
+//     const isCordPage = normalizedPages.includes(pageFilename);
+
+//     if (pageIsIndex) {
+//         localStorage.removeItem("cordEnabled");
+//         localStorage.setItem("cordBurned", "true");
+//         cord.style.display = "none";
+//         return;
+//     }
+
+//     const showCord =
+//         localStorage.getItem("cordEnabled") === "true" &&
+//         localStorage.getItem("cordBurned") !== "true" &&
+//         isCordPage;
+
+//     cord.style.display = showCord ? "block" : "none";
+
+//     if (!cord.dataset.bound) {
+//         cord.dataset.bound = "true";
+//         cord.addEventListener("click", (e) => {
+//             e.preventDefault();
+//             localStorage.removeItem("cordEnabled");
+//             localStorage.setItem("cordBurned", "true");
+//             cord.style.display = "none";
+//         });
+//     }
+// }
+// document.addEventListener("DOMContentLoaded", () => {
+//     setupRandomLink();
+//     updateCordVisibility();
+// });
+
+
+
+
+
+
+//!Test
+// document.addEventListener("DOMContentLoaded", () => {
+//   const cord = document.querySelector(".cord");
+//   if (!cord) {
+//     console.warn("No .cord element found");
+//     return;
+//   }
+
+//   const cordImg = cord.querySelector("img");
+//   if (!cordImg) {
+//     console.warn("No <img> inside .cord");
+//     return;
+//   }
+
+//   cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
+
+//   cord.style.display = "block"; // force it to appear for testing
+
+//   cordImg.onload = () => console.log("Cord image loaded!");
+//   cordImg.onerror = () => console.error("Failed to load cord image at:", cordImg.src);
+// });
+
+
+
+//?Old
 // const script = document.currentScript;
 // const scriptFolder = script.src.substring(0, script.src.lastIndexOf("/"));
 // const cordBaseImage = scriptFolder + "/Knight-Wander-3.png";
