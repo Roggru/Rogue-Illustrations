@@ -82,8 +82,8 @@ function getCordImagePath() {
 }
 
 function enableCord() {
+  if (localStorage.getItem("visitedIndex") === "true") return;
   localStorage.setItem("cordEnabled", "true");
-  localStorage.removeItem("visitedIndex");
 }
 
 function updateCordVisibility() {
