@@ -78,7 +78,7 @@ function getCordImagePath() {
   if (folder) {
     return folder + "/" + cordImageFilename;
   }
-  return "Images/" + cordImageFilename;
+  return "jsc/" + cordImageFilename;
 }
 
 function enableCord() {
