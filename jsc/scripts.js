@@ -6,7 +6,7 @@ function goBack(){
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = ["portfolio.html", "end.html", "Divine Beings/thesevenideals.html"];
 
-//Shift
+//Shift-
 function setupRandomLink() {
     const box = document.getElementById("shift");
     if (!box) return;
@@ -15,14 +15,12 @@ function setupRandomLink() {
     const img2 = box.querySelector(".i3-2");
     const link = document.getElementById("randomLink");
     const overlay = document.getElementById("shift-screen");
-
     if (!link || !overlay) return;
 
     box.addEventListener("mouseenter", () => {
         img1.style.opacity = 0;
         img2.style.opacity = 1;
     });
-
     box.addEventListener("mouseleave", () => {
         img1.style.opacity = 1;
         img2.style.opacity = 0;
@@ -30,7 +28,7 @@ function setupRandomLink() {
 
     link.addEventListener("click", event => {
         event.preventDefault();
-        enableCord();
+        localStorage.setItem("cordEnabled", "true");
 
         overlay.classList.add("shift-screen-show");
         document.body.style.overflow = "hidden";
@@ -46,6 +44,73 @@ function setupRandomLink() {
         document.body.style.overflow = "";
     });
 }
+function getThisScriptUrl() {
+    if (document.currentScript?.src) return document.currentScript.src;
+    const scripts = document.getElementsByTagName("script");
+    for (let i = scripts.length - 1; i >= 0; i--) {
+        const src = scripts[i].src || "";
+        if (src.includes("/jsc/") || src.endsWith("/scripts.js") || src.endsWith("/cord.js")) {
+            return src;
+        }
+    }
+    return "";
+}
+
+function getScriptFolder() {
+    const url = getThisScriptUrl();
+    if (!url) return "";
+    return decodeURIComponent(url).split(/[?#]/)[0].replace(/\/[^/]*$/, "");
+}
+
+function getCordImagePath() {
+    const folder = getScriptFolder();
+    return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
+}
+
+function updateCordVisibility() {
+    const cord = document.querySelector(".cord");
+    if (!cord) return;
+
+    const cordImg = cord.querySelector("img");
+    if (!cordImg) return;
+
+    cordImg.src = getCordImagePath();
+
+    const page = window.location.pathname.split("/").pop();
+    const isListedPage = pages.includes(page);
+    const isIndex = page === "" || page === "index.html";
+
+    if (isIndex) {
+        localStorage.removeItem("cordEnabled");
+        localStorage.setItem("cordBurned", "true");
+        cord.style.display = "none";
+        return;
+    }
+
+    const showCord = localStorage.getItem("cordEnabled") === "true" &&
+                     localStorage.getItem("cordBurned") !== "true" &&
+                     isListedPage;
+
+    cord.style.display = showCord ? "block" : "none";
+
+    if (cordImg && !cordImg.dataset.bound) {
+        cordImg.dataset.bound = "true";
+        cordImg.addEventListener("click", () => {
+            localStorage.removeItem("cordEnabled");
+            localStorage.setItem("cordBurned", "true");
+            cord.style.display = "none";
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupRandomLink();
+    updateCordVisibility();
+});
+
+
+
+
 
 // Wanderer:
 // const script = document.currentScript;
@@ -87,81 +152,3 @@ function setupRandomLink() {
 //     }
 // }
 // document.addEventListener("DOMContentLoaded", updateCordVisibility);
-
-function getThisScriptUrl() {
-    if (document.currentScript?.src) return document.currentScript.src;
-
-    const scripts = document.getElementsByTagName("script");
-    for (let i = scripts.length - 1; i >= 0; i--) {
-        const src = scripts[i].src || "";
-        if (src.includes("/jsc/") || src.endsWith("/scripts.js") || src.endsWith("/cord.js")) {
-            return src;
-        }
-    }
-    return "";
-}
-
-function getScriptFolder() {
-    const url = getThisScriptUrl();
-    if (!url) return "";
-    try {
-        return decodeURIComponent(url).split(/[?#]/)[0].replace(/\/[^/]*$/, "");
-    } catch {
-        return "";
-    }
-}
-
-function getCordImagePath() {
-    const folder = getScriptFolder();
-    const path = folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
-    const img = new Image();
-    img.src = path;
-    img.onerror = () => img.src = `jsc/${cordImageFilename}`;
-    return img.src;
-}
-
-function enableCord() {
-    if (localStorage.getItem("cordBurned") === "true") return;
-    localStorage.setItem("cordEnabled", "true");
-}
-
-function updateCordVisibility() {
-    const cord = document.querySelector(".cord");
-    if (!cord) return;
-
-    const cordImg = cord.querySelector("img");
-    if (cordImg) cordImg.src = getCordImagePath();
-
-    const page = window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
-    const isIndex = page === "" || page === "index.html";
-
-    if (isIndex) {
-        localStorage.removeItem("cordEnabled");
-        localStorage.setItem("cordBurned", "true");
-        cord.style.display = "none";
-        return;
-    }
-
-    cord.style.display =
-        localStorage.getItem("cordEnabled") === "true" &&
-        localStorage.getItem("cordBurned") !== "true"
-            ? "block"
-            : "none";
-
-    if (cordImg && !cordImg.dataset.bound) {
-        cordImg.dataset.bound = "true";
-        cordImg.addEventListener("click", () => {
-            localStorage.removeItem("cordEnabled");
-            localStorage.setItem("cordBurned", "true");
-            cord.style.display = "none";
-        });
-    }
-}
-document.addEventListener("DOMContentLoaded", () => {
-    updateCordVisibility();
-    setupRandomLink();
-});
-
-
-
-
