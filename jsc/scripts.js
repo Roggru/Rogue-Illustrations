@@ -3,10 +3,10 @@ function goBack(){
     window.history.back();
 }
 
+//Wanderer
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = ["portfolio.html", "end.html", "Divine Beings/thesevenideals.html"];
 
-//Shift-
 function setupRandomLink() {
     const box = document.getElementById("shift");
     if (!box) return;
@@ -15,6 +15,7 @@ function setupRandomLink() {
     const img2 = box.querySelector(".i3-2");
     const link = document.getElementById("randomLink");
     const overlay = document.getElementById("shift-screen");
+
     if (!link || !overlay) return;
 
     box.addEventListener("mouseenter", () => {
@@ -26,9 +27,10 @@ function setupRandomLink() {
         img2.style.opacity = 0;
     });
 
-    link.addEventListener("click", event => {
+    link.addEventListener("click", (event) => {
         event.preventDefault();
-        localStorage.setItem("cordEnabled", "true");
+
+        enableCord();
 
         overlay.classList.add("shift-screen-show");
         document.body.style.overflow = "hidden";
@@ -44,22 +46,15 @@ function setupRandomLink() {
         document.body.style.overflow = "";
     });
 }
-function getThisScriptUrl() {
-    if (document.currentScript?.src) return document.currentScript.src;
-    const scripts = document.getElementsByTagName("script");
-    for (let i = scripts.length - 1; i >= 0; i--) {
-        const src = scripts[i].src || "";
-        if (src.includes("/jsc/") || src.endsWith("/scripts.js") || src.endsWith("/cord.js")) {
-            return src;
-        }
-    }
-    return "";
-}
+document.addEventListener("DOMContentLoaded", () => {
+    setupRandomLink();
+});
 
+//!Venture
 function getScriptFolder() {
-    const url = getThisScriptUrl();
-    if (!url) return "";
-    return decodeURIComponent(url).split(/[?#]/)[0].replace(/\/[^/]*$/, "");
+    const scripts = document.getElementsByTagName("script");
+    const src = scripts[scripts.length - 1]?.src || "";
+    return src ? decodeURIComponent(src).split(/[?#]/)[0].replace(/\/[^/]*$/, "") : "";
 }
 
 function getCordImagePath() {
@@ -67,18 +62,22 @@ function getCordImagePath() {
     return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
 }
 
+function enableCord() {
+    if (localStorage.getItem("cordBurned") !== "true") {
+        localStorage.setItem("cordEnabled", "true");
+    }
+}
+
 function updateCordVisibility() {
     const cord = document.querySelector(".cord");
     if (!cord) return;
 
     const cordImg = cord.querySelector("img");
-    if (!cordImg) return;
+    if (cordImg) cordImg.src = getCordImagePath();
 
-    cordImg.src = getCordImagePath();
-
-    const page = window.location.pathname.split("/").pop();
-    const isListedPage = pages.includes(page);
+    const page = window.location.pathname.split("/").pop().toLowerCase();
     const isIndex = page === "" || page === "index.html";
+    const isCordPage = cordPages.some(p => p.toLowerCase().endsWith(page));
 
     if (isIndex) {
         localStorage.removeItem("cordEnabled");
@@ -87,15 +86,17 @@ function updateCordVisibility() {
         return;
     }
 
-    const showCord = localStorage.getItem("cordEnabled") === "true" &&
-                     localStorage.getItem("cordBurned") !== "true" &&
-                     isListedPage;
+    const showCord =
+        localStorage.getItem("cordEnabled") === "true" &&
+        localStorage.getItem("cordBurned") !== "true" &&
+        isCordPage;
 
     cord.style.display = showCord ? "block" : "none";
 
-    if (cordImg && !cordImg.dataset.bound) {
-        cordImg.dataset.bound = "true";
-        cordImg.addEventListener("click", () => {
+    if (cordImg && !cord.dataset.bound) {
+        cord.dataset.bound = "true";
+        cord.addEventListener("click", (e) => {
+            e.preventDefault();
             localStorage.removeItem("cordEnabled");
             localStorage.setItem("cordBurned", "true");
             cord.style.display = "none";
@@ -104,9 +105,12 @@ function updateCordVisibility() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    setupRandomLink();
     updateCordVisibility();
 });
+
+
+
+
 
 
 
