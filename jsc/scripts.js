@@ -86,6 +86,7 @@ function updateCordVisibility() {
 
   if (isIndex) {
     localStorage.removeItem("cordEnabled");
+    localStorage.setItem("cordBurned", "true");
     cord.style.display = "none";
     return;
   }
@@ -106,6 +107,7 @@ function updateCordVisibility() {
   }
 }
 window.addEventListener("pageshow", updateCordVisibility);
+
 
 
 
