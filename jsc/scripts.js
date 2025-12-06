@@ -82,7 +82,6 @@ function getCordImagePath() {
 }
 
 function enableCord() {
-  if (localStorage.getItem("visitedIndex") === "true") return;
   localStorage.setItem("cordEnabled", "true");
 }
 
@@ -91,32 +90,31 @@ function updateCordVisibility() {
   if (!cord) return;
 
   const cordImg = cord.querySelector("img");
-  const imagePath = getCordImagePath();
-  if (cordImg) cordImg.src = imagePath;
+  if (cordImg) {
+    cordImg.src = getCordImagePath();
+  }
 
-  const currentPage = window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
-  const isIndex = currentPage === "index.html" || currentPage === "";
+  const currentPage =
+    window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
+  const isIndex = currentPage === "" || currentPage === "index.html";
 
 if (isIndex) {
-    localStorage.setItem("visitedIndex", "true");
-    localStorage.removeItem("cordEnabled");
-    cord.style.display = "none";
-    return;
+  localStorage.removeItem("cordEnabled");
+  cord.style.display = "none";
+  return;
 }
 
   cord.style.display =
-    (localStorage.getItem("cordEnabled") === "true" &&
-     localStorage.getItem("visitedIndex") !== "true")
+    localStorage.getItem("cordEnabled") === "true"
       ? "block"
-      : "none"
+      : "none";
 
-if (cordImg) {
-  cordImg.addEventListener("click", () => {
-    localStorage.removeItem("cordEnabled");
-    cord.style.display = "none";
-  });
-}
-
+  if (cordImg) {
+    cordImg.addEventListener("click", () => {
+      localStorage.removeItem("cordEnabled");
+      cord.style.display = "none";
+    });
+  }
 }
 window.addEventListener("load", updateCordVisibility);
 
