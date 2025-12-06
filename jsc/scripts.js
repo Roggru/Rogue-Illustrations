@@ -100,8 +100,8 @@ function updateCordVisibility() {
 
   if (isIndex) {
     localStorage.removeItem("cordEnabled");
-    sessionStorage.removeItem("cordHidden");
     sessionStorage.setItem("visitedIndex", "true");
+    sessionStorage.setItem("cordHidden", "true");
     cord.style.display = "none";
     return;
   }
@@ -119,6 +119,5 @@ function updateCordVisibility() {
     });
   }
 }
-
 document.addEventListener("DOMContentLoaded", updateCordVisibility);
 
