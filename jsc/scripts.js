@@ -84,7 +84,6 @@ function getCordImagePath() {
 function enableCord() {
   localStorage.setItem("cordEnabled", "true");
   localStorage.removeItem("visitedIndex");
-  sessionStorage.removeItem("cordHidden");
 }
 
 function updateCordVisibility() {
@@ -98,19 +97,16 @@ function updateCordVisibility() {
   const currentPage = window.location.pathname.split("/").pop().toLowerCase().replace(/\/$/, "");
   const isIndex = currentPage === "index.html" || currentPage === "";
 
-  if (isIndex) {
-    localStorage.removeItem("cordEnabled");
-    localStorage.setItem("visitedIndex", "true");
-    sessionStorage.setItem("cordHidden", "true");
-    cord.style.display = "none";
+if (isIndex) {
+    localStorage.removeItem("cordEnabled");       // disable cord
+    localStorage.setItem("visitedIndex", "true"); // mark index visit
+    cord.style.display = "none";                  // hide immediately
     return;
-  }
+}
 
-  const enabled = localStorage.getItem("cordEnabled") === "true";
-  const visitedIndex = localStorage.getItem("visitedIndex") === "true";
-  const hidden = sessionStorage.getItem("cordHidden") === "true";
-
-  cord.style.display = enabled && !hidden && !visitedIndex ? "block" : "none";
+    const enabled = localStorage.getItem("cordEnabled") === "true";
+    const visitedIndex = localStorage.getItem("visitedIndex") === "true";
+    cord.style.display = enabled && !visitedIndex ? "block" : "none";
 
   if (cordImg) {
     cordImg.addEventListener("click", () => {
