@@ -98,23 +98,26 @@ function updateCordVisibility() {
   const isIndex = currentPage === "index.html" || currentPage === "";
 
 if (isIndex) {
-    localStorage.removeItem("cordEnabled");       // disable cord
-    localStorage.setItem("visitedIndex", "true"); // mark index visit
-    cord.style.display = "none";                  // hide immediately
+    localStorage.setItem("visitedIndex", "true");
+    localStorage.removeItem("cordEnabled");
+    cord.style.display = "none";
     return;
 }
 
-    const enabled = localStorage.getItem("cordEnabled") === "true";
-    const visitedIndex = localStorage.getItem("visitedIndex") === "true";
-    cord.style.display = enabled && !visitedIndex ? "block" : "none";
+  cord.style.display =
+    (localStorage.getItem("cordEnabled") === "true" &&
+     localStorage.getItem("visitedIndex") !== "true")
+      ? "block"
+      : "none"
 
-  if (cordImg) {
-    cordImg.addEventListener("click", () => {
-      cord.style.display = "none";
-      sessionStorage.setItem("cordHidden", "true");
-    });
-  }
+if (cordImg) {
+  cordImg.addEventListener("click", () => {
+    localStorage.removeItem("cordEnabled");
+    cord.style.display = "none";
+  });
 }
-document.addEventListener("DOMContentLoaded", updateCordVisibility);
+
+}
+window.addEventListener("load", updateCordVisibility);
 
 
