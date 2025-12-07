@@ -39,6 +39,7 @@ function setupRandomLink() {
             window.location.href = pages[randomIndex];
         }, 4000);
     });
+}
 
 //Overlay
 function resetShiftOverlay() {
@@ -48,7 +49,6 @@ function resetShiftOverlay() {
   overlay.classList.remove("shift-screen-show");
   document.body.style.overflow = "";
 }
-
 document.addEventListener("DOMContentLoaded", resetShiftOverlay);
 
 window.addEventListener("pageshow", (event) => {
@@ -56,7 +56,6 @@ window.addEventListener("pageshow", (event) => {
     resetShiftOverlay();
   }
 });
-}
 
 
 
