@@ -155,6 +155,9 @@ img{
     opacity: 1;
     visibility: visible;
 }
+    .no-transition{
+        transition: none !important;
+    }
 /*? .gradient{
     position: absolute;
     top: 0;
