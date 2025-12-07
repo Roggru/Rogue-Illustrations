@@ -82,6 +82,10 @@ align-items: start;}
     align-items: center;
     justify-content: center;
     width: 100%;}
+    .column a{
+        text-decoration: none;}
+        .column a:hover{
+            text-decoration: underline;}
 .c2{
     transform: translateY(120px);}
 .column figure{
@@ -262,6 +266,8 @@ p{
 .passage-lead{
     text-align: center;
     font-style: italic;
+    padding-top: 40px;
+    line-height: 1px;
 }
 
 /*Buttons—————————————————————————————————————————————————————————————————————————————————*/
