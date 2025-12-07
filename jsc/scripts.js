@@ -33,8 +33,11 @@ function setupRandomLink() {
         localStorage.setItem("cordEnabled", "true");
 
         overlay.classList.remove("no-transition");
-        overlay.classList.add("shift-screen-show");
         document.body.style.overflow = "hidden";
+        
+        setTimeout(() => {
+            overlay.classList.add("shift-screen-show");
+        }, 10);
 
         setTimeout(() => {
             const randomIndex = Math.floor(Math.random() * pages.length);
@@ -44,6 +47,15 @@ function setupRandomLink() {
 }
 
 //Overlay
+(function() {
+    const overlay = document.getElementById("shift-screen");
+    if (overlay) {
+        overlay.classList.add("no-transition");
+        overlay.classList.remove("shift-screen-show");
+        document.body.style.overflow = "";
+    }
+})();
+
 window.addEventListener("pageshow", (event) => {
     const overlay = document.getElementById("shift-screen");
     if (overlay) {
