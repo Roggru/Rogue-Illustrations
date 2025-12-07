@@ -41,12 +41,15 @@ function setupRandomLink() {
     });
 }
 //Overlay
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("pageshow", (event) => {
     const overlay = document.getElementById("shift-screen");
     if (overlay) {
         overlay.classList.remove("shift-screen-show");
         document.body.style.overflow = "";
     }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     setupRandomLink();
 });
 
