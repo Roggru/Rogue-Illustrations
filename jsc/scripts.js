@@ -3,6 +3,48 @@ function goBack(){
     window.history.back();
 }
 
+//Overlay
+document.addEventListener("DOMContentLoaded", () => {
+    const daemonsTrigger = document.querySelector(".display-move-1");
+    const daemonsOverlay = document.querySelector(".DaemonsO");
+    
+    if (daemonsTrigger && daemonsOverlay) {
+        daemonsTrigger.addEventListener("mouseenter", () => {
+            daemonsOverlay.style.opacity = ".6";
+        });
+        
+        daemonsTrigger.addEventListener("mouseleave", () => {
+            daemonsOverlay.style.opacity = "0";
+        });
+    }
+    
+    const divinesTrigger = document.querySelector(".display-move-2");
+    const divinesOverlay = document.querySelector(".DivinesO");
+    
+    if (divinesTrigger && divinesOverlay) {
+        divinesTrigger.addEventListener("mouseenter", () => {
+            divinesOverlay.style.opacity = ".4";
+        });
+        
+        divinesTrigger.addEventListener("mouseleave", () => {
+            divinesOverlay.style.opacity = "0";
+        });
+    }
+
+    const beastsTrigger = document.querySelector(".display-move-3");
+    const beastsOverlay = document.querySelector(".BeastsO");
+    
+    if (beastsTrigger && beastsOverlay) {
+        beastsTrigger.addEventListener("mouseenter", () => {
+            beastsOverlay.style.opacity = ".6";
+        });
+        
+        beastsTrigger.addEventListener("mouseleave", () => {
+            beastsOverlay.style.opacity = "0";
+        });
+    }
+});
+
 
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = ["portfolio.html", "end.html", "Divine-Beings/thesevenideals.html"];
@@ -46,7 +88,7 @@ function setupRandomLink() {
     });
 }
 
-//Overlay
+//Shift
 (function() {
     const overlay = document.getElementById("shift-screen");
     if (overlay) {
@@ -117,37 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
     checkCordVisibility();
     setupCordClickHandler();
 });
-
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const cord = document.querySelector(".cord");
-//   if (!cord) return;
-
-//   const page = window.location.pathname.split("/").pop().toLowerCase();
-
-//   if (page === "" || page === "index.html") {
-//     localStorage.removeItem("cordEnabled");
-//     cord.style.display = "none";
-//     return;
-//   }
-
-//   const cordEnabled = localStorage.getItem("cordEnabled") === "true";
-//   if (!cordEnabled) return;
-//   if (!pages.includes(page)) return;
-
-//   const cordImg = cord.querySelector("img");
-//   if (!cordImg) return;
-
-//   cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
-//   cord.style.display = "block";
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     setupRandomLink();
-//     setupCord();
-//
-// });
-
 
 
 
