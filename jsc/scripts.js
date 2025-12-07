@@ -5,7 +5,7 @@ function goBack(){
 
 //Wanderer
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", "Divine Beings/thesevenideals.html"];
+const pages = ["portfolio.html", "end.html", "thesevenideals.html"];
 
 function setupRandomLink() {
     const box = document.getElementById("shift");
@@ -44,94 +44,33 @@ function setupRandomLink() {
 
 
 //!Venture
-function showCord() {
+document.addEventListener("DOMContentLoaded", () => {
   const cord = document.querySelector(".cord");
   if (!cord) return;
+
+  const page = window.location.pathname.split("/").pop().toLowerCase();
+  if (page === "" || page === "index.html") {
+    localStorage.removeItem("cordEnabled");
+    cord.style.display = "none";
+    return;
+  }
 
   const cordImg = cord.querySelector("img");
   if (!cordImg) return;
 
-  // Always use root-relative path
-  cordImg.src = `/jsc/${cordImageFilename}`;
+  cord.style.display = "none";
 
-  cord.style.display = "block"; // force show for testing
-  cordImg.onload = () => console.log("Cord image loaded successfully!");
-  cordImg.onerror = () => console.error("Failed to load cord image at:", cordImg.src);
+  const cordEnabled = localStorage.getItem("cordEnabled") === "true";
+  if (!cordEnabled) return;
 
-  // Click to "burn" the cord
-  if (!cord.dataset.bound) {
-    cord.dataset.bound = "true";
-    cord.addEventListener("click", (e) => {
-      e.preventDefault();
-      cord.style.display = "none";
-    });
-  }
-}
+  if (!pages.includes(page)) return;
 
-document.addEventListener("DOMContentLoaded", showCord);
+  cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
+  cord.style.display = "block";
+});
 
+document.addEventListener("DOMContentLoaded", setupRandomLink);
 
-
-
-
-
-
-
-
-// function getScriptFolder() {
-//     const scripts = document.getElementsByTagName("script");
-//     const src = scripts[scripts.length - 1]?.src || "";
-//     return src ? decodeURIComponent(src).split(/[?#]/)[0].replace(/\/[^/]*$/, "") : "";
-// }
-
-// function getCordImagePath() {
-//     const folder = getScriptFolder();
-//     return folder ? `${folder}/${cordImageFilename}` : `jsc/${cordImageFilename}`;
-// }
-
-// function updateCordVisibility() {
-//     const cord = document.querySelector(".cord");
-//     if (!cord) return;
-
-//     const cordImg = cord.querySelector("img");
-//     if (!cordImg) return;
-
-//     cordImg.src = getCordImagePath();
-
-//     const pageFilename = window.location.pathname.split("/").pop().toLowerCase();
-//     const pageIsIndex = pageFilename === "" || pageFilename === "index.html";
-
-//     const normalizedPages = pages.map(p => p.split("/").pop().toLowerCase());
-//     const isCordPage = normalizedPages.includes(pageFilename);
-
-//     if (pageIsIndex) {
-//         localStorage.removeItem("cordEnabled");
-//         localStorage.setItem("cordBurned", "true");
-//         cord.style.display = "none";
-//         return;
-//     }
-
-//     const showCord =
-//         localStorage.getItem("cordEnabled") === "true" &&
-//         localStorage.getItem("cordBurned") !== "true" &&
-//         isCordPage;
-
-//     cord.style.display = showCord ? "block" : "none";
-
-//     if (!cord.dataset.bound) {
-//         cord.dataset.bound = "true";
-//         cord.addEventListener("click", (e) => {
-//             e.preventDefault();
-//             localStorage.removeItem("cordEnabled");
-//             localStorage.setItem("cordBurned", "true");
-//             cord.style.display = "none";
-//         });
-//     }
-// }
-// document.addEventListener("DOMContentLoaded", () => {
-//     setupRandomLink();
-//     updateCordVisibility();
-// });
 
 
 
