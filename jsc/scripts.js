@@ -39,6 +39,23 @@ function setupRandomLink() {
             window.location.href = pages[randomIndex];
         }, 4000);
     });
+
+//Overlay
+function resetShiftOverlay() {
+  const overlay = document.getElementById("shift-screen");
+  if (!overlay) return;
+
+  overlay.classList.remove("shift-screen-show");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("DOMContentLoaded", resetShiftOverlay);
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    resetShiftOverlay();
+  }
+});
 }
 
 
@@ -49,26 +66,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!cord) return;
 
   const page = window.location.pathname.split("/").pop().toLowerCase();
+
   if (page === "" || page === "index.html") {
     localStorage.removeItem("cordEnabled");
     cord.style.display = "none";
     return;
   }
 
-  const cordImg = cord.querySelector("img");
-  if (!cordImg) return;
-
-  cord.style.display = "none";
-
   const cordEnabled = localStorage.getItem("cordEnabled") === "true";
   if (!cordEnabled) return;
-
   if (!pages.includes(page)) return;
+
+  const cordImg = cord.querySelector("img");
+  if (!cordImg) return;
 
   cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
   cord.style.display = "block";
 });
-
 document.addEventListener("DOMContentLoaded", setupRandomLink);
 
 
