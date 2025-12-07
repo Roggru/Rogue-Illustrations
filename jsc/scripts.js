@@ -40,49 +40,41 @@ function setupRandomLink() {
         }, 4000);
     });
 }
-
 //Overlay
-function resetShiftOverlay() {
-  const overlay = document.getElementById("shift-screen");
-  if (!overlay) return;
-
-  overlay.classList.remove("shift-screen-show");
-  document.body.style.overflow = "";
-}
-document.addEventListener("DOMContentLoaded", resetShiftOverlay);
-
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) {
-    resetShiftOverlay();
-  }
+document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("shift-screen");
+    if (overlay) {
+        overlay.classList.remove("shift-screen-show");
+        document.body.style.overflow = "";
+    }
+    setupRandomLink();
 });
-
 
 
 //!Venture
-document.addEventListener("DOMContentLoaded", () => {
-  const cord = document.querySelector(".cord");
-  if (!cord) return;
+// document.addEventListener("DOMContentLoaded", () => {
+//   const cord = document.querySelector(".cord");
+//   if (!cord) return;
 
-  const page = window.location.pathname.split("/").pop().toLowerCase();
+//   const page = window.location.pathname.split("/").pop().toLowerCase();
 
-  if (page === "" || page === "index.html") {
-    localStorage.removeItem("cordEnabled");
-    cord.style.display = "none";
-    return;
-  }
+//   if (page === "" || page === "index.html") {
+//     localStorage.removeItem("cordEnabled");
+//     cord.style.display = "none";
+//     return;
+//   }
 
-  const cordEnabled = localStorage.getItem("cordEnabled") === "true";
-  if (!cordEnabled) return;
-  if (!pages.includes(page)) return;
+//   const cordEnabled = localStorage.getItem("cordEnabled") === "true";
+//   if (!cordEnabled) return;
+//   if (!pages.includes(page)) return;
 
-  const cordImg = cord.querySelector("img");
-  if (!cordImg) return;
+//   const cordImg = cord.querySelector("img");
+//   if (!cordImg) return;
 
-  cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
-  cord.style.display = "block";
-});
-document.addEventListener("DOMContentLoaded", setupRandomLink);
+//   cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
+//   cord.style.display = "block";
+// });
+// document.addEventListener("DOMContentLoaded", setupRandomLink);
 
 
 
