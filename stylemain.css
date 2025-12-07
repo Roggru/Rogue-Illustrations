@@ -155,7 +155,7 @@ img{
     opacity: 1;
     visibility: visible;
 }
-    .no-transition{
+    .shift-screen.no-transition{
         transition: none !important;
     }
 /*? .gradient{

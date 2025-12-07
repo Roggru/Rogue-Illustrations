@@ -5,7 +5,7 @@ function goBack(){
 
 
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", "thesevenideals.html"];
+const pages = ["portfolio.html", "end.html", "Divine-Beings/thesevenideals.html"];
 
 //Wanderer
 function setupRandomLink() {
@@ -34,7 +34,7 @@ function setupRandomLink() {
 
         overlay.classList.remove("no-transition");
         document.body.style.overflow = "hidden";
-        
+
         setTimeout(() => {
             overlay.classList.add("shift-screen-show");
         }, 10);
@@ -65,13 +65,61 @@ window.addEventListener("pageshow", (event) => {
         
         void overlay.offsetWidth;
     }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    setupRandomLink();
+    checkCordVisibility();
 });
 
 //!Venture
+function checkCordVisibility() {
+    const cord = document.querySelector(".cord");
+    if (!cord) return;
+
+    const page = window.location.pathname.split("/").pop().toLowerCase();
+    if (page === "" || page === "index.html") {
+        localStorage.removeItem("cordEnabled");
+        localStorage.removeItem("cordDisabled");
+        cord.style.display = "none";
+        return;
+    }
+
+    const cordEnabled = localStorage.getItem("cordEnabled") === "true";
+    const cordDisabled = localStorage.getItem("cordDisabled") === "true";
+    if (!cordEnabled || cordDisabled) {
+        cord.style.display = "none";
+        return;
+    }
+    
+    const isListedPage = pages.some(p => p.split("/").pop().toLowerCase() === page);
+    if (!isListedPage) {
+        cord.style.display = "none";
+        return;
+    }
+
+    const cordImg = cord.querySelector("img");
+    if (!cordImg) return;
+
+    cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
+    cord.style.display = "block";
+}
+
+function setupCordClickHandler() {
+    const cord = document.querySelector(".cord");
+    if (!cord) return;
+
+    cord.addEventListener("click", (event) => {
+        event.preventDefault();
+        localStorage.setItem("cordDisabled", "true");
+        cord.style.display = "none";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupRandomLink();
+    checkCordVisibility();
+    setupCordClickHandler();
+});
+
+
+
 // document.addEventListener("DOMContentLoaded", () => {
 //   const cord = document.querySelector(".cord");
 //   if (!cord) return;
@@ -93,9 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //   cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
 //   cord.style.display = "block";
-// });
-// document.addEventListener("DOMContentLoaded", setupRandomLink);
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     setupRandomLink();
+//     setupCord();
+//
+// });
 
 
 
