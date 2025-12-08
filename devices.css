@@ -42,6 +42,8 @@
         display: block;}
     .column{
         display: block;}
+        .column img{
+            width: 300px;}
 
 
 

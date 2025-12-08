@@ -90,13 +90,12 @@ transform: translateY(-30px);}
     padding-top: 40px;
     padding-bottom: 40px;}
     .column img{
-        width: 20vw;
-        min-width: 400px;}
+        width: clamp(400px, 20vw, 500px);}
 
 .flex{
     height: auto;
     float: left;
-    width: min(500px, 70vw);
+    width: min(500px, 50vw);
     margin: 30px;}
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
@@ -253,6 +252,7 @@ p{
 .passage{
     margin: 0 auto;
     padding: 10px;
+    font-size: min(1.1rem, 3.8vw);
 }
 .p2{
     font-family: "Cormorant SC", serif;
