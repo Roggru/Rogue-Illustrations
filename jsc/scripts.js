@@ -110,7 +110,7 @@ window.addEventListener("pageshow", (event) => {
     checkCordVisibility();
 });
 
-//!Venture
+//Venture
 function checkCordVisibility() {
     const cord = document.querySelector(".cord");
     if (!cord) return;
