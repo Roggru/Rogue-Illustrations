@@ -47,10 +47,13 @@
         <img src="Images/Art/Humanity.jpg" alt="">
         <img src="Images/Art/Beauty.jpg" alt="">
         <img class="long" src="Images/Art/World Walker.jpg" alt="">
+        <img src="Images/Art/Suffer of Envy, Resentment Undying.jpg" alt="">
     </div>
+</div>
 
+
+<div>
     <div id="lightbox" class="lightbox">
-        <div class="lightbox-outer"></div>
         <div class="lightbox-inner">
             <img id="lightbox-img" src="#" alt="">
         </div>
@@ -58,22 +61,39 @@
     <script>
         const lightbox = document.getElementById("lightbox");
         const lightboxImg = document.getElementById("lightbox-img");
-        const outer = document.querySelector(".lightbox-outer");
+        const lightboxInner = document.querySelector(".lightbox-inner");
+        const containerAllPort = document.querySelector(".container-all-port");
 
         document.querySelectorAll(".portfolio img").forEach(img => {
-            img.addEventListener("click", () => {
+            img.addEventListener("click", (e) => {
+                e.stopPropagation();
+
                 lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                
+                if (img.classList.contains("long")) {
+                    lightboxImg.classList.add("long");
+                    lightboxInner.classList.add("long-layout");
+                } else {
+                    lightboxImg.classList.remove("long");
+                    lightboxInner.classList.remove("long-layout");
+                }
                 lightbox.classList.add("show");
+                containerAllPort.classList.add("blurred");
             });
         });
-        lightbox.addEventListener("click", () => {
-        lightbox.classList.remove("show");
+
+        document.body.addEventListener("click", (e) => {
+            if (lightbox.classList.contains("show")) {
+                lightbox.classList.remove("show");
+                containerAllPort.classList.remove("blurred");
+            }
         });
-        outer.addEventListener("click", () => {
-        lightbox.classList.remove("show");
+
+        lightboxImg.addEventListener("click", (e) => {
+            e.stopPropagation();
         });
     </script>
-
 </div>
 
 

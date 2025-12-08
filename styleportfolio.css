@@ -30,40 +30,60 @@
         scale: 1.05;
     }
 
+
 .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 80vw;
+    width: 70vw;
     height: 90vh;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
     background-color: #101011;
-    align-items: center;
     z-index: 1000;
+    transform: translate(-50%, -50%);
+    /* animation: slideUp-Port .5s ease-out forwards; */
 }
-.lightbox-outer {
-    opacity: 0;
-    pointer-events: auto;
-    z-index: 1;
-}
+    /* @keyframes slideUp-Port{
+        to{
+            opacity: 1;
+            transform: translateY(0);
+    }} */
 .lightbox-inner {
-    padding: 80px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px;
     z-index: 2;
 }
 
 .lightbox.show {
-    display: flex;
+    display: block;
 }
 
 .lightbox img {
     max-width: 60vw;
-    max-height: 80vh;
+    max-height: 75vh;
     width: auto;
     height: auto;
     display: block;
 }
-/* .lightbox img.long{
+.lightbox-inner.long-layout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+}
+.lightbox img.long{
+    max-width: 90vw;
+    max-height: 70vh;
+}
 
-} */
+.container-all-port.blurred{
+    filter: blur(2px);
+    transition: filter 0.3 ease;
+}
