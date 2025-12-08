@@ -1,8 +1,6 @@
 .container-all-port{
-    margin-left: auto;
-    margin-right: auto;
-    width: 75vw;
-    min-width: 1500px;
+    margin: 0 auto;
+    width: max(1500px, 75vw);
     font-family: "Cormorant SC", serif;
     opacity: 0;
     transform: translateY(15px);
@@ -12,17 +10,6 @@
             opacity: 1;
             transform: translateY(0);
         }}
-
-/*! .portfolio{
-    margin-top: 25px;
-    margin-bottom: 25px;
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 50px;
-    background-color: rgba(255, 0, 0, 0.25);
-} */
 
 .portfolio{
     display: grid;

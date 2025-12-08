@@ -1,0 +1,72 @@
+@media (max-width: 767px){
+    .container-all{
+        width: 100%;}
+    .container-1{
+        width: 100%;}
+    .display{
+        flex-direction: column;}   
+    
+    /*! Fix alignment */
+    .container-2{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        margin: 0 auto;}
+    .item-1,
+    .item-2,
+    .item-3 {
+        grid-area: auto;
+        transform: none;
+        width: 100%;
+        display: block;}
+    .container-3{
+        width: 100%;}
+    .flex{
+        float: none;
+        display: block;
+        margin: 0 auto;}
+
+    .container-all-port{
+        width: 100%;
+        margin: 0 auto;}
+    .portfolio{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        margin: 0 auto;
+        padding: 25px;}
+        .long{
+            grid-column: span 1;}
+    .db-list{
+        display: block;}
+    .column{
+        display: block;}
+
+
+
+    .passage{
+        width: 70vw;
+        text-align: justify;}
+    .p2{
+        margin: 20px;}
+    .back{
+        left: 5vw;
+    }
+}
+
+
+
+/*? Add an a Ipad query.  */
+/* @media (min-width: 768px){
+    .container-all{
+        width: 100%;}
+    .container-1{
+        width: 100%;}
+    .display{
+        flex-direction: row;}
+} */
+
+/* @media (min-width: 992px){
+
+} */
