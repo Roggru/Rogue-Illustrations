@@ -55,12 +55,36 @@
                 <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </figcaption>
         </figure>
-
-        <img src="Images/Art/Dragon Blue.jpg" alt="">
-        <img src="Images/Art/Humanity.jpg" alt="">
-        <img src="Images/Art/Beauty.jpg" alt="">
-        <img class="long" src="Images/Art/World Walker.jpg" alt="">
-        <img src="Images/Art/Suffer of Envy, Resentment Undying.jpg" alt="">
+        <figure>
+            <img src="Images/Art/Dragon Blue.jpg" alt="">
+            <figcaption>
+                <h3>Immensity</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Humanity.jpg" alt="">
+            <figcaption>
+                <h3>Humanity</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Beauty.jpg" alt="">
+            <figcaption>
+                <h3>Beauty</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img class="long" src="Images/Art/World Walker.jpg" alt="">
+            <figcaption>
+                <h3>World Walker</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Suffer of Envy, Resentment Undying.jpg" alt="">
+            <figcaption>
+                <h3>Suffer of Envy, Resentment Undying</h3>
+            </figcaption>
+        </figure>
     </div>
 </div>
 
@@ -75,88 +99,6 @@
             <div id="caption-text" class="caption-text"></div>
         </div>
     </div>
-    <script>
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightbox-img");
-        const lightboxInner = document.querySelector(".lightbox-inner");
-        const containerAllPort = document.querySelector(".container-all-port");
-        const captionBtn = document.getElementById("caption-btn");
-        const captionText = document.getElementById("caption-text");
-
-        document.querySelectorAll(".portfolio figure").forEach(figure => {
-            const img = figure.querySelector("img");
-            const figcaption = figure.querySelector("figcaption");
-            
-            img.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                
-                if (figcaption) {
-                    captionText.innerHTML = figcaption.innerHTML;
-                } else {
-                    captionText.innerHTML = "<p>No caption available.</p>";
-                    // Make the button invisible instead.
-                }
-                
-                captionText.classList.remove("show");
-                lightboxInner.classList.remove("caption-expanded");
-                
-                if (figure.classList.contains("long")) {
-                    lightboxImg.classList.add("long");
-                    lightboxInner.classList.add("long-layout");
-                } else {
-                    lightboxImg.classList.remove("long");
-                    lightboxInner.classList.remove("long-layout");
-                }
-                
-                lightbox.classList.add("show");
-                containerAllPort.classList.add("blurred");
-            });
-        });
-
-        document.querySelectorAll(".portfolio img:not(figure img)").forEach(img => {
-            img.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                captionText.innerHTML = "<p>No caption available.</p>";
-
-                captionText.classList.remove("show");
-                lightboxInner.classList.remove("caption-expanded");
-                
-                if (img.classList.contains("long")) {
-                    lightboxImg.classList.add("long");
-                    lightboxInner.classList.add("long-layout");
-                } else {
-                    lightboxImg.classList.remove("long");
-                    lightboxInner.classList.remove("long-layout");
-                }
-                
-                lightbox.classList.add("show");
-                containerAllPort.classList.add("blurred");
-            });
-        });
-
-        captionBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            captionText.classList.toggle("show");
-            lightboxInner.classList.toggle("caption-expanded");
-        });
-
-        document.body.addEventListener("click", (e) => {
-            if (lightbox.classList.contains("show")) {
-                lightbox.classList.remove("show");
-                containerAllPort.classList.remove("blurred");
-            }
-        });
-
-        lightbox.addEventListener("click", (e) => {
-            e.stopPropagation();
-        });
-    </script>
 </div>
 
 

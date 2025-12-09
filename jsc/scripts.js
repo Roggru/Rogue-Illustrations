@@ -154,13 +154,119 @@ function setupCordClickHandler() {
     });
 }
 
+//Portfolio 
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxInner = document.querySelector(".lightbox-inner");
+    const containerAllPort = document.querySelector(".container-all-port");
+    const captionBtn = document.getElementById("caption-btn");
+    const captionText = document.getElementById("caption-text");
+
+    document.querySelectorAll(".portfolio figure").forEach(figure => {
+        const img = figure.querySelector("img");
+        const figcaption = figure.querySelector("figcaption");
+        
+        img.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            
+            if (figcaption && figcaption.innerHTML.trim()) {
+                captionText.innerHTML = figcaption.innerHTML;
+                captionBtn.classList.remove("hidden");
+            } else {
+                captionText.innerHTML = "";
+                captionBtn.classList.add("hidden");
+            }
+            
+            captionText.classList.remove("show");
+            lightboxInner.classList.remove("caption-expanded");
+            lightbox.classList.remove("caption-active");
+            lightbox.classList.remove("long-layout-active");
+            
+            if (figure.classList.contains("long")) {
+                lightboxImg.classList.add("long");
+                lightboxInner.classList.add("long-layout");
+            } else {
+                lightboxImg.classList.remove("long");
+                lightboxInner.classList.remove("long-layout");
+            }
+            
+            lightbox.classList.add("show");
+            containerAllPort.classList.add("blurred");
+        });
+    });
+
+    lightbox.addEventListener("mouseenter", () => {
+        captionBtn.classList.add("visible");
+    });
+
+    lightbox.addEventListener("mouseleave", () => {
+        captionBtn.classList.remove("visible");
+    });
+
+    document.querySelectorAll(".portfolio img:not(figure img)").forEach(img => {
+        img.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            captionText.innerHTML = "";
+            
+            captionBtn.classList.add("hidden");
+
+            captionText.classList.remove("show");
+            lightboxInner.classList.remove("caption-expanded");
+            lightbox.classList.remove("caption-active");
+            lightbox.classList.remove("long-layout-active");
+            
+            if (img.classList.contains("long")) {
+                lightboxImg.classList.add("long");
+                lightboxInner.classList.add("long-layout");
+            } else {
+                lightboxImg.classList.remove("long");
+                lightboxInner.classList.remove("long-layout");
+            }
+            
+            lightbox.classList.add("show");
+            containerAllPort.classList.add("blurred");
+        });
+    });
+
+    captionBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        captionText.classList.toggle("show");
+        lightboxInner.classList.toggle("caption-expanded");
+        
+        lightbox.classList.toggle("caption-active");
+        
+        if (lightboxInner.classList.contains("long-layout")) {
+            lightbox.classList.toggle("long-layout-active");
+        }
+    });
+
+    document.body.addEventListener("click", (e) => {
+        if (lightbox.classList.contains("show")) {
+            lightbox.classList.remove("show");
+            containerAllPort.classList.remove("blurred");
+            captionText.classList.remove("show");
+            lightboxInner.classList.remove("caption-expanded");
+            lightbox.classList.remove("caption-active");
+            lightbox.classList.remove("long-layout-active");
+        }
+    });
+
+    lightbox.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     setupRandomLink();
     checkCordVisibility();
     setupCordClickHandler();
 });
-
-
-
 
 
