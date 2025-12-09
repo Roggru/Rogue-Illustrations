@@ -41,8 +41,21 @@
         </div>
 
     <div class="portfolio">
-        <img class="long" src="Images/Art/Reprisal.jpg" alt="">
-        <img src="Images/Art/The Second Virago.jpg" alt="">
+        <figure class="long">
+            <img src="Images/Art/Reprisal.jpg" alt="">
+            <figcaption>
+                <h3>Reprisal</h3>
+                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/The Second Virago.jpg" alt="">
+            <figcaption>
+                <h3>The Second Virago</h3>
+                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </figcaption>
+        </figure>
+
         <img src="Images/Art/Dragon Blue.jpg" alt="">
         <img src="Images/Art/Humanity.jpg" alt="">
         <img src="Images/Art/Beauty.jpg" alt="">
@@ -55,7 +68,11 @@
 <div>
     <div id="lightbox" class="lightbox">
         <div class="lightbox-inner">
-            <img id="lightbox-img" src="#" alt="">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="#" alt="">
+                <button id="caption-btn" class="caption"></button>
+            </div>
+            <div id="caption-text" class="caption-text"></div>
         </div>
     </div>
     <script>
@@ -63,13 +80,52 @@
         const lightboxImg = document.getElementById("lightbox-img");
         const lightboxInner = document.querySelector(".lightbox-inner");
         const containerAllPort = document.querySelector(".container-all-port");
+        const captionBtn = document.getElementById("caption-btn");
+        const captionText = document.getElementById("caption-text");
 
-        document.querySelectorAll(".portfolio img").forEach(img => {
+        document.querySelectorAll(".portfolio figure").forEach(figure => {
+            const img = figure.querySelector("img");
+            const figcaption = figure.querySelector("figcaption");
+            
             img.addEventListener("click", (e) => {
                 e.stopPropagation();
 
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
+                
+                if (figcaption) {
+                    captionText.innerHTML = figcaption.innerHTML;
+                } else {
+                    captionText.innerHTML = "<p>No caption available.</p>";
+                    // Make the button invisible instead.
+                }
+                
+                captionText.classList.remove("show");
+                lightboxInner.classList.remove("caption-expanded");
+                
+                if (figure.classList.contains("long")) {
+                    lightboxImg.classList.add("long");
+                    lightboxInner.classList.add("long-layout");
+                } else {
+                    lightboxImg.classList.remove("long");
+                    lightboxInner.classList.remove("long-layout");
+                }
+                
+                lightbox.classList.add("show");
+                containerAllPort.classList.add("blurred");
+            });
+        });
+
+        document.querySelectorAll(".portfolio img:not(figure img)").forEach(img => {
+            img.addEventListener("click", (e) => {
+                e.stopPropagation();
+
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                captionText.innerHTML = "<p>No caption available.</p>";
+
+                captionText.classList.remove("show");
+                lightboxInner.classList.remove("caption-expanded");
                 
                 if (img.classList.contains("long")) {
                     lightboxImg.classList.add("long");
@@ -78,9 +134,16 @@
                     lightboxImg.classList.remove("long");
                     lightboxInner.classList.remove("long-layout");
                 }
+                
                 lightbox.classList.add("show");
                 containerAllPort.classList.add("blurred");
             });
+        });
+
+        captionBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            captionText.classList.toggle("show");
+            lightboxInner.classList.toggle("caption-expanded");
         });
 
         document.body.addEventListener("click", (e) => {
@@ -90,7 +153,7 @@
             }
         });
 
-        lightboxImg.addEventListener("click", (e) => {
+        lightbox.addEventListener("click", (e) => {
             e.stopPropagation();
         });
     </script>

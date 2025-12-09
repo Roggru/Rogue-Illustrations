@@ -18,10 +18,17 @@
     padding-bottom: 50px;
     gap: 40px;
 }
+.portfolio figure{
+    margin: 0;
+}
+    .portfolio figcaption{
+        display: none;
+    }
 .portfolio img{
     width: 100%;
     height: auto;
     transition: all .25s ease-in-out;
+    display: block;
 }
 .long{
     grid-column: span 2;
@@ -31,7 +38,139 @@
     }
 
 
+
 .lightbox {
+    display: none;
+    position: fixed;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    background-color: #101011;
+    z-index: 1000;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 3px solid #323232;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+}
+.lightbox-inner {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px;
+    z-index: 2;
+    transition: max-width 0.4s ease-in-out, max-height 0.4s ease-in-out;
+}
+.lightbox-image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox.show {
+    display: block;
+}
+
+.lightbox img {
+    max-width: 60vw;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.lightbox-inner.long-layout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.lightbox img.long{
+    max-width: calc(90vw - 160px);
+    max-height: 70vh;
+}
+
+.container-all-port.blurred{
+    filter: blur(3px);
+    transition: filter 0.3s ease;
+}
+
+
+
+.caption{
+    position: absolute;
+    width: .5vw;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    right: calc(-50px - 10px);
+    transform: translateY(-50%);
+    margin-right: 20px;
+    border-radius: 50%;
+    background-color: #ffff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+    .caption:hover{
+        transform: translateY(-50%) scale(1.3);
+    }
+.lightbox-inner.caption-expanded:not(.long-layout) {
+    gap: 50px;
+}
+.lightbox-inner.long-layout .caption {
+    right: auto;
+    top: auto;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-right: 0;
+    margin-bottom: 0;
+    transition: transform 0.3s ease-in-out;
+}
+    .lightbox-inner.long-layout .caption:hover{
+            transform: translateX(-50%) scale(1.3);
+        }
+.caption-text {
+    max-width: 0;
+    max-height: 0; 
+    overflow: hidden;
+    opacity: 0;
+    color: white;
+    transition: max-width 0.4s ease-in-out, max-height 0.4s ease-in-out, opacity 0.5s ease-in-out 0.2s;
+}
+.caption-text.show {
+    max-width: 400px;
+    max-height: 1000px;
+    opacity: 1;
+}
+.lightbox-inner.long-layout .caption-text.show {
+    max-width: calc(80vw - 160px);
+    margin-top: 20px;
+    padding-bottom: 80px;
+}
+.lightbox-inner.caption-expanded {
+    overflow-y: auto;
+    max-width: 95vw;
+}
+.lightbox-inner.long-layout .caption-text {
+    text-align: center;
+    margin-top: 0;
+}
+.lightbox-inner.long-layout.caption-expanded {
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+
+/*! Fix being able to click and interact with the container-all-port/portfolio. */
+
+/*! Feature where hovering over the lightbox makes a smooth, quick fade in for the button appear. Button transforms into the divider line, animated as it grows in length.*/ 
+
+/*! Feature where the lightbox border color dynamically updates to the average pixel color of the image inside it. */
+
+/* ? Old
+ .lightbox {
     display: none;
     position: fixed;
     width: 70vw;
@@ -42,13 +181,8 @@
     background-color: #101011;
     z-index: 1000;
     transform: translate(-50%, -50%);
-    /* animation: slideUp-Port .5s ease-out forwards; */
 }
-    /* @keyframes slideUp-Port{
-        to{
-            opacity: 1;
-            transform: translateY(0);
-    }} */
+
 .lightbox-inner {
     position: relative;
     width: 100%;
@@ -86,4 +220,4 @@
 .container-all-port.blurred{
     filter: blur(2px);
     transition: filter 0.3 ease;
-}
+} */
