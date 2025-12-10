@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,47 +19,85 @@
 
 <div class="container-all-port">
     <div class="container-header">
-            <h2>Portfolio</h2>
-        <p class="subtext" style="margin-bottom: 15px;">Explore all that is uncategorized, unlost, and unforgotten. Every piece has a story.</p>
+        <h2>Portfolio</h2>
+        <p class="subtext" style="margin-bottom: 15px;">Explore all that is uncategorized, unlost, and unforgotten.
+            Every piece has a story.</p>
         <div class="divider-line"></div>
     </div>
 
     <div class="button-space">
-            <button id="swapBtn"
-                onclick="swap()" 
-                style="font-family: Cormorant SC; transform: scale(1.8); background-color: #ffffff10; color: #FFFFFF; border: #FFFFFF; margin-top: 50px;">
-                Give me Everything
-            </button>
-            <script>
-                const btn = document.getElementById("swapBtn");
-                btn.addEventListener("click", () => {
-                    const current = btn.textContent.trim();
-                    btn.textContent = current === "Give me Everything"
+        <button id="swapBtn" onclick="swap()"
+            style="font-family: Cormorant SC; transform: scale(1.8); background-color: #ffffff10; color: #FFFFFF; border: #FFFFFF; margin-top: 50px;">
+            Give me Everything
+        </button>
+        <script>
+            const btn = document.getElementById("swapBtn");
+            btn.addEventListener("click", () => {
+                const current = btn.textContent.trim();
+                btn.textContent = current === "Give me Everything"
                     ? "Only Filtered"
                     : "Give me Everything";
-                });
-            </script>
-        </div>
+            });
+        </script>
+    </div>
 
     <div class="portfolio">
         <figure class="long">
             <img src="Images/Art/Reprisal.jpg" alt="">
             <figcaption>
                 <h3>Reprisal</h3>
-                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </figcaption>
         </figure>
         <figure>
             <img src="Images/Art/The Second Virago.jpg" alt="">
             <figcaption>
                 <h3>The Second Virago</h3>
-                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="passage">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </figcaption>
         </figure>
         <figure>
             <img src="Images/Art/Dragon Blue.jpg" alt="">
             <figcaption>
                 <h3>Immensity</h3>
+            </figcaption>
+        </figure>
+        <figure class="long">
+            <img src="Images/Art/World Walker.jpg" alt="">
+            <figcaption>
+                <h3>World Walker</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Suffer of Envy, Resentment Undying.jpg" alt="">
+            <figcaption>
+                <h3>Suffer of Envy, Resentment Undying</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Wrath of the Warbearer.jpg" alt="">
+            <figcaption>
+                <h3>Wrath of the Warbearer</h3>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="Images/Art/Fire Man.jpg" alt="">
+            <figcaption>
+                <h3>Burning</h3>
+            </figcaption>
+        </figure>
+        <figure class="long">
+            <img src="Images/Art/Orchestrator.jpg" alt="">
+            <figcaption>
+                <h3>Athilidice, Maiden of the Orchestra</h3>
             </figcaption>
         </figure>
         <figure>
@@ -73,16 +112,10 @@
                 <h3>Beauty</h3>
             </figcaption>
         </figure>
-        <figure>
-            <img class="long" src="Images/Art/World Walker.jpg" alt="">
+        <figure class="long">
+            <img src="Images/Art/Belief.jpg" alt="">
             <figcaption>
-                <h3>World Walker</h3>
-            </figcaption>
-        </figure>
-        <figure>
-            <img src="Images/Art/Suffer of Envy, Resentment Undying.jpg" alt="">
-            <figcaption>
-                <h3>Suffer of Envy, Resentment Undying</h3>
+                <h3>Belief</h3>
             </figcaption>
         </figure>
     </div>
@@ -109,4 +142,5 @@
     </a>
 </div>
 </body>
+
 </html>
