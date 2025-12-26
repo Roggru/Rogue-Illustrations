@@ -97,6 +97,10 @@ transform: translateY(-30px);}
     float: left;
     width: min(500px, 50vw);
     margin: 30px;}
+.flex-center{
+    width: 80%;
+    display: block;
+    margin: 30px auto;}
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 img{
