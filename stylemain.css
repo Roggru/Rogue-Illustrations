@@ -92,9 +92,14 @@ transform: translateY(-30px);}
     .column img{
         width: clamp(400px, 20vw, 500px);}
 
-.flex{
+.flex-left{
     height: auto;
     float: left;
+    width: min(500px, 50vw);
+    margin: 30px;}
+.flex-right{
+    height: auto;
+    float: right;
     width: min(500px, 50vw);
     margin: 30px;}
 .flex-center{
