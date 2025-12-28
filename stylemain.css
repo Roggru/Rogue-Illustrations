@@ -95,12 +95,12 @@ transform: translateY(-30px);}
 .flex-left{
     height: auto;
     float: left;
-    width: min(500px, 50vw);
+    width: min(500px, 80vw);
     margin: 30px;}
 .flex-right{
     height: auto;
     float: right;
-    width: min(500px, 50vw);
+    width: min(500px, 80vw);
     margin: 30px;}
 .flex-center{
     width: 95%;
