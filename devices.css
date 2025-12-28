@@ -22,7 +22,7 @@
         display: block;}
     .container-3{
         width: 100%;}
-    .flex{
+    .flex-left, .flex-right{
         float: none;
         display: block;
         margin: 0 auto;}
