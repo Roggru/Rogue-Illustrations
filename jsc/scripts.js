@@ -170,7 +170,7 @@ function loadArtwork() {
         })
         .then(data => {
             allArtwork = data;
-            displayArtwork(false);
+            displayArtwork(false, true);
         })
         .catch(error => {
             console.error('Error loading artwork:', error);
@@ -181,19 +181,35 @@ function displayArtwork(showAll) {
     const portfolio = document.querySelector('.portfolio');
     if (!portfolio) return;
     
-    portfolio.innerHTML = '';
-    
     const filtered = showAll 
         ? allArtwork 
         : allArtwork.filter(art => art.category === "portfolio");
     
-    filtered.forEach(art => {
+    const currentSrcs = Array.from(portfolio.querySelectorAll('figure img')).map(img => img.src);
+    const newSrcs = filtered.map(art => art.src);
+    
+    const imagesToAdd = filtered.filter(art => !currentSrcs.includes(art.src));
+    
+    const figuresToRemove = Array.from(portfolio.querySelectorAll('figure')).filter(figure => {
+        const imgSrc = figure.querySelector('img').src;
+        return !newSrcs.includes(imgSrc);
+    });
+    
+    if (imagesToAdd.length === 0 && figuresToRemove.length === 0) {
+        return;
+    }
+
+    figuresToRemove.forEach(figure => figure.remove());
+    
+    imagesToAdd.forEach(art => {
         const figure = document.createElement('figure');
         if (art.isLong) figure.classList.add('long');
         
         figure.style.breakInside = 'avoid';
         figure.style.pageBreakInside = 'avoid';
         figure.style.webkitColumnBreakInside = 'avoid';
+        
+        figure.classList.add('new');
         
         const img = document.createElement('img');
         img.src = art.src;
@@ -211,13 +227,11 @@ function displayArtwork(showAll) {
     });
     
     setTimeout(() => {
-        const portfolio = document.querySelector('.portfolio');
-        portfolio.style.columnCount = '0';
-        void portfolio.offsetHeight;
-        portfolio.style.columnCount = '5';
-        
+        portfolio.querySelectorAll('figure.new').forEach(fig => {
+            fig.classList.remove('new');
+        });
         attachLightboxListeners();
-    }, 50);
+    }, 600);
 }
 
 
