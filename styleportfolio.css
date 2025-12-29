@@ -51,11 +51,6 @@
     display: block;
 }
 
-.long {
-    column-span: all;
-    margin-bottom: 40px;
-}
-
 .portfolio img:hover {
     scale: 1.05;
 }
@@ -70,7 +65,7 @@
     left: 50%;
     background-color: #101011;
     z-index: 1000;
-    max-width: 90vw;
+    max-width: 95vw;
     max-height: 90vh;
     overflow: hidden;
     border: 3px solid #323232;
@@ -173,8 +168,9 @@
 }
 
 .lightbox-inner.caption-expanded:not(.long-layout) {
-    max-width: 95vw;
+    max-width: 98vw;
     gap: 50px;
+    padding: 80px 40px;
 }
 
 .lightbox-inner.long-layout .caption {
@@ -200,9 +196,12 @@
     color: white;
     transition: max-width .8s ease-in-out, max-height .8s ease-in-out, opacity 0.5s ease-in-out 0.2s;
 }
+    .caption-text p{
+        text-align: justify;
+    }
 
 .caption-text.show {
-    max-width: 800px;
+    max-width: 1000px;
     overflow: visible;
     opacity: 1;
 }
@@ -217,7 +216,7 @@
 
 .lightbox-inner.caption-expanded {
     overflow-y: auto;
-    max-width: 95vw;
+    max-width: 98vw;
 }
 
 .lightbox-inner.long-layout .caption-text {
