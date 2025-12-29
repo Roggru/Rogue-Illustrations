@@ -3,7 +3,7 @@
         "src": "Images/Art/Reprisal.jpg",
         "title": "Reprisal",
         "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "category": "portfolio",
+        "category": "story",
         "isLong": true
     },
     {
@@ -17,14 +17,14 @@
         "src": "Images/Art/Dragon Blue.jpg",
         "title": "Immensity",
         "caption": "",
-        "category": "portfolio",
+        "category": "story",
         "isLong": false
     },
     {
         "src": "Images/Art/World Walker.jpg",
         "title": "World Walker",
         "caption": "",
-        "category": "portfolio",
+        "category": "story",
         "isLong": true
     },
     {
@@ -73,7 +73,7 @@
         "src": "Images/Art/Belief.jpg",
         "title": "Belief",
         "caption": "",
-        "category": "",
+        "category": "story",
         "isLong": true
     }
 ]
