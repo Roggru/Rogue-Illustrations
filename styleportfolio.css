@@ -15,17 +15,16 @@
 }
 
 .portfolio {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: 1px;
-    grid-auto-flow: row;
+    column-count: 5;
+    column-gap: 40px;
     padding-bottom: 50px;
-    gap: 40px;
-    align-items: start;
 }
 
 .portfolio figure {
-    margin: 0;
+    break-inside: avoid;
+    margin: 0 0 40px 0;
+    display: inline-block;
+    width: 100%;
 }
 
 .portfolio figcaption {
@@ -40,7 +39,8 @@
 }
 
 .long {
-    grid-column: span 2;
+    column-span: all;
+    margin-bottom: 40px;
 }
 
 .portfolio img:hover {

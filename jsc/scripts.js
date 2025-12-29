@@ -206,71 +206,11 @@ function displayArtwork(showAll) {
         portfolio.appendChild(figure);
     });
     
-    const images = portfolio.querySelectorAll('img');
-    
-    if (images.length === 0) {
-        return;
-    }
-    
-    let loadedCount = 0;
-    const totalImages = images.length;
-    
-    function checkAllLoaded() {
-        loadedCount++;
-        if (loadedCount === totalImages) {
-            setTimeout(() => {
-                calculateGridRowSpan();
-                attachLightboxListeners();
-            }, 200);
-        }
-    }
-    
-    images.forEach(img => {
-        if (img.complete && img.naturalHeight !== 0) {
-            checkAllLoaded();
-        } else {
-            img.addEventListener('load', checkAllLoaded);
-            img.addEventListener('error', () => {
-                console.error('Failed to load image:', img.src);
-                checkAllLoaded();
-            });
-        }
-    });
+    setTimeout(() => {
+        attachLightboxListeners();
+    }, 100);
 }
 
-function calculateGridRowSpan() {
-    const portfolio = document.querySelector('.portfolio');
-    if (!portfolio) return;
-    
-    portfolio.style.gridAutoRows = '1px';
-    
-    const items = portfolio.querySelectorAll('figure');
-    
-    items.forEach(item => {
-        const img = item.querySelector('img');
-        
-        if (img && img.complete && img.naturalHeight !== 0) {
-            setRowSpan(item, img);
-        } else if (img) {
-            img.addEventListener('load', () => {
-                setRowSpan(item, img);
-            });
-        }
-    });
-}
-
-function setRowSpan(item, img) {
-    void item.offsetHeight;
-    
-    requestAnimationFrame(() => {
-        const height = img.getBoundingClientRect().height;
-        
-        if (height > 0) {
-            const span = Math.ceil(height);
-            item.style.gridRowEnd = `span ${span}`;
-        }
-    });
-}
 
 // Lightbox
 function attachLightboxListeners() {
@@ -334,12 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
             swapBtn.textContent = showingAll ? "Only Filtered" : "Give me Everything";
         });
     }
-    
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(calculateGridRowSpan, 250);
-    });
 
     const lightbox = document.getElementById("lightbox");
     const lightboxInner = document.querySelector(".lightbox-inner");
