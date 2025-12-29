@@ -191,6 +191,10 @@ function displayArtwork(showAll) {
         const figure = document.createElement('figure');
         if (art.isLong) figure.classList.add('long');
         
+        figure.style.breakInside = 'avoid';
+        figure.style.pageBreakInside = 'avoid';
+        figure.style.webkitColumnBreakInside = 'avoid';
+        
         const img = document.createElement('img');
         img.src = art.src;
         img.alt = art.title;
@@ -207,8 +211,13 @@ function displayArtwork(showAll) {
     });
     
     setTimeout(() => {
+        const portfolio = document.querySelector('.portfolio');
+        portfolio.style.columnCount = '0';
+        void portfolio.offsetHeight;
+        portfolio.style.columnCount = '5';
+        
         attachLightboxListeners();
-    }, 100);
+    }, 50);
 }
 
 
