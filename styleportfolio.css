@@ -23,13 +23,6 @@
     gap: 40px;
     align-items: start;
 }
-/* .portfolio {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: masonry;
-    padding-bottom: 50px;
-    gap: 40px;
-} */
 
 .portfolio figure {
     margin: 0;

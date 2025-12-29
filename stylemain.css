@@ -28,7 +28,7 @@ body{
     margin: 0 auto;
     height: 1px;
     background-color: #ffffff25;
-    width: 55vw;}
+    width: 100%;}
 .container-1{
     margin: 0 auto;
     width: 1400px;
@@ -200,6 +200,19 @@ img{
     opacity: 0;
     transition: opacity 3s ease-in;
     pointer-events: none;
+}
+
+.backscape{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: .6;
+    width: max(100%, 60vw);
+    height: 100%;
+    z-index: -10;
 }
 
 /*Styles——————————————————————————————————————————————————————————————————————————————————*/

@@ -157,48 +157,123 @@ function setupCordClickHandler() {
 
 
 //Portfolio 
-function calculateGridRowSpan() {
+let allArtwork = [];
+let showingAll = false;
+
+function loadArtwork() {
+    fetch('jsc/pieces.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            allArtwork = data;
+            displayArtwork(false);
+        })
+        .catch(error => {
+            console.error('Error loading artwork:', error);
+        });
+}
+
+function displayArtwork(showAll) {
     const portfolio = document.querySelector('.portfolio');
     if (!portfolio) return;
     
-    const gap = 40;
-    const rowHeight = 1;
+    portfolio.innerHTML = '';
     
-    portfolio.style.gridAutoRows = `${rowHeight}px`;
+    const filtered = showAll 
+        ? allArtwork 
+        : allArtwork.filter(art => art.category === "portfolio");
     
-    const items = portfolio.querySelectorAll('figure, .portfolio > img');
-    
-    items.forEach(item => {
-        const img = item.tagName === 'FIGURE' ? item.querySelector('img') : item;
+    filtered.forEach(art => {
+        const figure = document.createElement('figure');
+        if (art.isLong) figure.classList.add('long');
         
-        if (img && img.complete) {
-            setRowSpan(item, img, rowHeight, gap);
-        } else if (img) {
-            img.addEventListener('load', () => {
-                setRowSpan(item, img, rowHeight, gap);
+        const img = document.createElement('img');
+        img.src = art.src;
+        img.alt = art.title;
+        
+        const figcaption = document.createElement('figcaption');
+        figcaption.innerHTML = `
+            <h3>${art.title}</h3>
+            ${art.caption ? `<p class="passage">${art.caption}</p>` : ''}
+        `;
+        
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+        portfolio.appendChild(figure);
+    });
+    
+    const images = portfolio.querySelectorAll('img');
+    
+    if (images.length === 0) {
+        return;
+    }
+    
+    let loadedCount = 0;
+    const totalImages = images.length;
+    
+    function checkAllLoaded() {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+            setTimeout(() => {
+                calculateGridRowSpan();
+                attachLightboxListeners();
+            }, 200);
+        }
+    }
+    
+    images.forEach(img => {
+        if (img.complete && img.naturalHeight !== 0) {
+            checkAllLoaded();
+        } else {
+            img.addEventListener('load', checkAllLoaded);
+            img.addEventListener('error', () => {
+                console.error('Failed to load image:', img.src);
+                checkAllLoaded();
             });
         }
     });
 }
 
-function setRowSpan(item, img, rowHeight, gap) {
-    requestAnimationFrame(() => {
-        const height = img.getBoundingClientRect().height;
-        const span = Math.ceil((height + gap) / (rowHeight + gap));
-        item.style.gridRowEnd = `span ${span}`;
+function calculateGridRowSpan() {
+    const portfolio = document.querySelector('.portfolio');
+    if (!portfolio) return;
+    
+    portfolio.style.gridAutoRows = '1px';
+    
+    const items = portfolio.querySelectorAll('figure');
+    
+    items.forEach(item => {
+        const img = item.querySelector('img');
+        
+        if (img && img.complete && img.naturalHeight !== 0) {
+            setRowSpan(item, img);
+        } else if (img) {
+            img.addEventListener('load', () => {
+                setRowSpan(item, img);
+            });
+        }
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    calculateGridRowSpan();
+function setRowSpan(item, img) {
+    void item.offsetHeight;
     
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(calculateGridRowSpan, 250);
+    requestAnimationFrame(() => {
+        const height = img.getBoundingClientRect().height;
+        
+        if (height > 0) {
+            const span = Math.ceil(height);
+            item.style.gridRowEnd = `span ${span}`;
+        }
     });
+}
 
-    // Lightbox code
+// Lightbox
+function attachLightboxListeners() {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const lightboxInner = document.querySelector(".lightbox-inner");
@@ -206,77 +281,79 @@ document.addEventListener('DOMContentLoaded', function() {
     const captionBtn = document.getElementById("caption-btn");
     const captionText = document.getElementById("caption-text");
 
-    if (lightbox && lightboxImg && containerAllPort) {
-        document.querySelectorAll(".portfolio figure").forEach(figure => {
-            const img = figure.querySelector("img");
-            const figcaption = figure.querySelector("figcaption");
+    if (!lightbox || !lightboxImg || !containerAllPort) return;
+
+    document.querySelectorAll(".portfolio figure").forEach(figure => {
+        const img = figure.querySelector("img");
+        const figcaption = figure.querySelector("figcaption");
+        
+        const newImg = img.cloneNode(true);
+        img.parentNode.replaceChild(newImg, img);
+        
+        newImg.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            lightboxImg.src = newImg.src;
+            lightboxImg.alt = newImg.alt;
             
-            img.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                
-                if (figcaption && figcaption.innerHTML.trim()) {
-                    captionText.innerHTML = figcaption.innerHTML;
-                    captionBtn.classList.remove("hidden");
-                } else {
-                    captionText.innerHTML = "";
-                    captionBtn.classList.add("hidden");
-                }
-                
-                captionText.classList.remove("show");
-                lightboxInner.classList.remove("caption-expanded");
-                lightbox.classList.remove("caption-active");
-                lightbox.classList.remove("long-layout-active");
-                
-                if (figure.classList.contains("long")) {
-                    lightboxImg.classList.add("long");
-                    lightboxInner.classList.add("long-layout");
-                } else {
-                    lightboxImg.classList.remove("long");
-                    lightboxInner.classList.remove("long-layout");
-                }
-                
-                lightbox.classList.add("show");
-                containerAllPort.classList.add("blurred");
-            });
+            if (figcaption && figcaption.innerHTML.trim()) {
+                captionText.innerHTML = figcaption.innerHTML;
+                captionBtn.classList.remove("hidden");
+            } else {
+                captionText.innerHTML = "";
+                captionBtn.classList.add("hidden");
+            }
+            
+            captionText.classList.remove("show");
+            lightboxInner.classList.remove("caption-expanded");
+            lightbox.classList.remove("caption-active");
+            lightbox.classList.remove("long-layout-active");
+            
+            if (figure.classList.contains("long")) {
+                lightboxImg.classList.add("long");
+                lightboxInner.classList.add("long-layout");
+            } else {
+                lightboxImg.classList.remove("long");
+                lightboxInner.classList.remove("long-layout");
+            }
+            
+            lightbox.classList.add("show");
+            containerAllPort.classList.add("blurred");
         });
+    });
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+    loadArtwork();
+
+    const swapBtn = document.getElementById("swapBtn");
+    if (swapBtn) {
+        swapBtn.addEventListener("click", () => {
+            showingAll = !showingAll;
+            displayArtwork(showingAll);
+            swapBtn.textContent = showingAll ? "Only Filtered" : "Give me Everything";
+        });
+    }
+    
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(calculateGridRowSpan, 250);
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxInner = document.querySelector(".lightbox-inner");
+    const containerAllPort = document.querySelector(".container-all-port");
+    const captionBtn = document.getElementById("caption-btn");
+    const captionText = document.getElementById("caption-text");
+
+    if (lightbox && lightboxInner && containerAllPort) {
         lightbox.addEventListener("mouseenter", () => {
             captionBtn.classList.add("visible");
         });
 
         lightbox.addEventListener("mouseleave", () => {
             captionBtn.classList.remove("visible");
-        });
-
-        document.querySelectorAll(".portfolio img:not(figure img)").forEach(img => {
-            img.addEventListener("click", (e) => {
-                e.stopPropagation();
-
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                captionText.innerHTML = "";
-                
-                captionBtn.classList.add("hidden");
-
-                captionText.classList.remove("show");
-                lightboxInner.classList.remove("caption-expanded");
-                lightbox.classList.remove("caption-active");
-                lightbox.classList.remove("long-layout-active");
-                
-                if (img.classList.contains("long")) {
-                    lightboxImg.classList.add("long");
-                    lightboxInner.classList.add("long-layout");
-                } else {
-                    lightboxImg.classList.remove("long");
-                    lightboxInner.classList.remove("long-layout");
-                }
-                
-                lightbox.classList.add("show");
-                containerAllPort.classList.add("blurred");
-            });
         });
 
         captionBtn.addEventListener("click", (e) => {
@@ -311,5 +388,3 @@ document.addEventListener('DOMContentLoaded', function() {
     checkCordVisibility();
     setupCordClickHandler();
 });
-
-
