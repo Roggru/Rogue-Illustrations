@@ -36,8 +36,13 @@
         grid-template-rows: auto;
         margin: 0 auto;
         padding: 25px;}
-        .long{
-            grid-column: span 1;}
+        .lightbox-inner{
+            padding: 30px;}
+        .lightbox img{
+            max-width: 80vw;}
+        .lightbox img.long{
+            max-width: 80vw;}
+
     .db-list{
         display: block;}
     .column{
