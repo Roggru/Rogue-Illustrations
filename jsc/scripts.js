@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", "Divine-Beings/arabas.html", "Divine-Beings/melthildkhyne.html", "Divine-Beings/immirus.html"];
+const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html"];
 
 //Wanderer
 function setupRandomLink() {
