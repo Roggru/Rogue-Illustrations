@@ -37,7 +37,7 @@
     {
         "src": "Images/Art/Suffer of Envy, Resentment Undying.jpg",
         "title": "Suffer of Envy, Resentment Undying",
-        "caption": "",
+        "caption": "So nigh he comes,<br>so weary and weighted.<br>Gilded and cursed<br>By infinite scars and wounds.<br>Within the forests of blossom,<br>Naught but salves and salvation;<br>So nigh he comes,<br>The envious who suffers,<br>The Undying resented.<br>So say we all, and so shall it be.",
         "category": "portfolio",
         "isLong": false
     },
@@ -53,6 +53,27 @@
         "title": "Burning",
         "caption": "",
         "category": "portfolio",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/Keeper of the Equipoise.jpg",
+        "title": "Keeper of the Equipoise",
+        "caption": "",
+        "category": "story",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/Extremity's Aggravation.jpg",
+        "title": "Extremity's Aggravation",
+        "caption": "",
+        "category": "story",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/Otherworld's Foreseer.jpg",
+        "title": "Otherworld's Foreseer",
+        "caption": "",
+        "category": "story",
         "isLong": false
     },
     {
