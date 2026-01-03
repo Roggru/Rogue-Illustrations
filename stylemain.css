@@ -336,3 +336,12 @@ p{
     transform: translateY(30px) scale(1.5);
     display: none;
 }
+
+.dot{
+    width: 3vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #ffff;
+    margin: 15px auto;
+    cursor: pointer;
+}

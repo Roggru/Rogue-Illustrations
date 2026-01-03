@@ -6,7 +6,6 @@
     .display{
         flex-direction: column;}   
     
-    /*! Fix alignment */
     .container-2{
         width: 100%;
         display: grid;
@@ -16,10 +15,20 @@
     .item-1,
     .item-2,
     .item-3 {
-        grid-area: auto;
-        transform: none;
-        width: 100%;
+        position: relative;
+        width: 90vw;
+        max-width: 500px;
+        margin: 0 auto;
         display: block;}
+        .item-3 img{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            width: 100%;
+            max-width: 500px;
+            height: auto;}
+
     .container-3{
         width: 100%;}
     .flex-left, .flex-right{

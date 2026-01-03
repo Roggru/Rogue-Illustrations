@@ -6,14 +6,16 @@ function goBack(){
 //Notification
 const notif = document.querySelector('.notif');
 
-if (sessionStorage.getItem('notifDismissed') === 'true') {
-    notif.style.display = 'none';
-}
-notif.addEventListener('click', function() {
-    notif.style.display = 'none';
+if (notif) {
+    if (sessionStorage.getItem('notifDismissed') === 'true') {
+        notif.style.display = 'none';
+    }
     
-    sessionStorage.setItem('notifDismissed', 'true');
-});
+    notif.addEventListener('click', function() {
+        notif.style.display = 'none';
+        sessionStorage.setItem('notifDismissed', 'true');
+    });
+}
 
 //Overlay
 document.addEventListener("DOMContentLoaded", () => {
