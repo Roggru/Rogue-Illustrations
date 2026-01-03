@@ -60,8 +60,10 @@
     .p2{
         margin: 20px;}
     .back{
-        left: 5vw;
-    }
+        left: 5vw;}
+
+    .notif{
+        display: block;}
 }
 
 

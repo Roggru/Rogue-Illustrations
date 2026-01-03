@@ -106,7 +106,17 @@ transform: translateY(-30px);}
     width: 95%;
     display: block;
     margin: 30px auto;}
-
+.notif{
+    background-color: black;
+    display: none;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 50px 20px 50px;
+    z-index: 9999;}
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 img{
     width: 30%;

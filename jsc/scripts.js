@@ -3,6 +3,18 @@ function goBack(){
     window.history.back();
 }
 
+//Notification
+const notif = document.querySelector('.notif');
+
+if (sessionStorage.getItem('notifDismissed') === 'true') {
+    notif.style.display = 'none';
+}
+notif.addEventListener('click', function() {
+    notif.style.display = 'none';
+    
+    sessionStorage.setItem('notifDismissed', 'true');
+});
+
 //Overlay
 document.addEventListener("DOMContentLoaded", () => {
     const daemonsTrigger = document.querySelector(".display-move-1");
