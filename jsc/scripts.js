@@ -161,21 +161,10 @@ function checkCordVisibility() {
     const cordImg = cord.querySelector("img");
     if (!cordImg) return;
 
-    cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
+    const basePath = getBasePath();
+    cordImg.src = basePath + "jsc/Knight-Wander-3.png";
     cord.style.display = "block";
 }
-
-function setupCordClickHandler() {
-    const cord = document.querySelector(".cord");
-    if (!cord) return;
-
-    cord.addEventListener("click", (event) => {
-        event.preventDefault();
-        localStorage.setItem("cordDisabled", "true");
-        cord.style.display = "none";
-    });
-}
-
 
 
 //Portfolio 
@@ -183,7 +172,8 @@ let allArtwork = [];
 let showingAll = false;
 
 function loadArtwork() {
-    fetch('jsc/pieces.json')
+    const basePath = getBasePath();
+    fetch(basePath + 'jsc/pieces.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
