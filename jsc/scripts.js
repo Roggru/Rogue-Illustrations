@@ -64,11 +64,7 @@ const cordImageFilename = "Knight-Wander-3.png";
 const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html"];
 
 function getBasePath() {
-    const path = window.location.pathname;
-    if (path.includes('/divinebeings/') || path.includes('/daemonbeings/') || path.includes('/beastbeings/')) {
-        return '../';
-    }
-    return '';
+    return '/Rogue-Illustrations/';
 }
 
 //Wanderer
@@ -161,9 +157,19 @@ function checkCordVisibility() {
     const cordImg = cord.querySelector("img");
     if (!cordImg) return;
 
-    const basePath = getBasePath();
-    cordImg.src = basePath + "jsc/Knight-Wander-3.png";
+    cordImg.src = "/Rogue-Illustrations/jsc/Knight-Wander-3.png";
     cord.style.display = "block";
+}
+
+function setupCordClickHandler() {
+    const cord = document.querySelector(".cord");
+    if (!cord) return;
+
+    cord.addEventListener("click", (event) => {
+        event.preventDefault();
+        localStorage.setItem("cordDisabled", "true");
+        cord.style.display = "none";
+    });
 }
 
 
@@ -172,8 +178,7 @@ let allArtwork = [];
 let showingAll = false;
 
 function loadArtwork() {
-    const basePath = getBasePath();
-    fetch(basePath + 'jsc/pieces.json')
+    fetch('/Rogue-Illustrations/jsc/pieces.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
