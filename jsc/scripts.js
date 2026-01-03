@@ -63,6 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html"];
 
+function getBasePath() {
+    const path = window.location.pathname;
+    if (path.includes('/divinebeings/') || path.includes('/daemonbeings/') || path.includes('/beastbeings/')) {
+        return '../';
+    }
+    return '';
+}
+
 //Wanderer
 function setupRandomLink() {
     const box = document.getElementById("shift");
