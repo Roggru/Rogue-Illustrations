@@ -65,7 +65,7 @@ const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divine
 
 function getBasePath() {
     const path = window.location.pathname;
-    if (path.includes('/divinebeings/') || path.includes('/daemonbeings/') || path.includes('/beastbeings/')) {
+    if (path.includes('/divinebeings/') || path.includes('/daemonbeings/') || path.includes('/beastialkind/')) {
         return '../';
     }
     return '';
@@ -368,3 +368,106 @@ document.addEventListener('DOMContentLoaded', function() {
     checkCordVisibility();
     setupCordClickHandler();
 });
+
+
+// Translation
+document.addEventListener('DOMContentLoaded', function() {
+    const speakElements = document.querySelectorAll('.speak');
+    
+    speakElements.forEach(speak => {
+        const bkp = speak.querySelector('.bkp');
+        const bkpT = speak.querySelector('.bkp-t');
+        
+        if (!bkp || !bkpT) return;
+        
+        const originalText = bkp.textContent;
+        const translatedText = bkpT.textContent;
+
+        setupDecipherLayers(bkp, bkpT, originalText, translatedText);
+        
+        let isTranslated = false;
+        let isAnimating = false;
+        
+        speak.addEventListener('mouseenter', () => {
+            if (!isTranslated && !isAnimating) {
+                isAnimating = true;
+                revealText(bkp, bkpT, true, () => {
+                    isTranslated = true;
+                    isAnimating = false;
+                });
+            }
+        });
+        
+        speak.addEventListener('mouseleave', () => {
+            if (isTranslated && !isAnimating) {
+                isAnimating = true;
+                revealText(bkp, bkpT, false, () => {
+                    isTranslated = false;
+                    isAnimating = false;
+                });
+            }
+        });
+    });
+});
+
+function setupDecipherLayers(bkp, bkpT, originalText, translatedText) {
+    const fadeDuration = 2;
+    
+    bkp.innerHTML = originalText.split('').map((char) => 
+        `<span style="display: inline-block; min-width: ${char === ' ' ? '0.25em' : 'auto'}; transition: opacity ${fadeDuration}s ease;">${char === ' ' ? '&nbsp;' : char}</span>`
+    ).join('');
+    
+    bkpT.innerHTML = translatedText.split('').map((char) => 
+        `<span style="display: inline-block; min-width: ${char === ' ' ? '0.25em' : 'auto'}; opacity: 0; transition: opacity ${fadeDuration}s ease;">${char === ' ' ? '&nbsp;' : char}</span>`
+    ).join('');
+    
+    bkpT.style.display = 'block';
+}
+
+function revealText(bkp, bkpT, showTranslation, callback) {
+    const duration = 3000;
+    const charsPerStep = 2;
+    
+    const bkpSpans = bkp.querySelectorAll('span');
+    const bkpTSpans = bkpT.querySelectorAll('span');
+    
+    const maxLength = Math.max(bkpSpans.length, bkpTSpans.length);
+    
+    let indices = [...Array(maxLength).keys()];
+    indices.sort(() => Math.random() - 0.5);
+    
+    const totalSteps = Math.ceil(maxLength / charsPerStep);
+    
+    for (let step = 0; step < totalSteps; step++) {
+        const delay = (duration / totalSteps) * step;
+        
+        setTimeout(() => {
+            for (let j = 0; j < charsPerStep; j++) {
+                const indexPos = step * charsPerStep + j;
+                if (indexPos >= indices.length) break;
+                
+                const charIndex = indices[indexPos];
+                
+                if (showTranslation) {
+                    if (charIndex < bkpSpans.length) {
+                        bkpSpans[charIndex].style.opacity = '0';
+                    }
+                    if (charIndex < bkpTSpans.length) {
+                        bkpTSpans[charIndex].style.opacity = '1';
+                    }
+                } else {
+                    if (charIndex < bkpTSpans.length) {
+                        bkpTSpans[charIndex].style.opacity = '0';
+                    }
+                    if (charIndex < bkpSpans.length) {
+                        bkpSpans[charIndex].style.opacity = '1';
+                    }
+                }
+                
+                if (indexPos === indices.length - 1 && callback) {
+                    setTimeout(callback, 2000);
+                }
+            }
+        }, delay);
+    }
+}
