@@ -208,29 +208,11 @@ function displayArtwork(showAll) {
         ? allArtwork 
         : allArtwork.filter(art => art.category === "portfolio");
     
-    const currentSrcs = Array.from(portfolio.querySelectorAll('figure img')).map(img => img.src);
-    const newSrcs = filtered.map(art => art.src);
+    portfolio.innerHTML = '';
     
-    const imagesToAdd = filtered.filter(art => !currentSrcs.includes(art.src));
-    
-    const figuresToRemove = Array.from(portfolio.querySelectorAll('figure')).filter(figure => {
-        const imgSrc = figure.querySelector('img').src;
-        return !newSrcs.includes(imgSrc);
-    });
-    
-    if (imagesToAdd.length === 0 && figuresToRemove.length === 0) {
-        return;
-    }
-
-    figuresToRemove.forEach(figure => figure.remove());
-    
-    imagesToAdd.forEach(art => {
+    filtered.forEach(art => {
         const figure = document.createElement('figure');
         if (art.isLong) figure.classList.add('long');
-        
-        figure.style.breakInside = 'avoid';
-        figure.style.pageBreakInside = 'avoid';
-        figure.style.webkitColumnBreakInside = 'avoid';
         
         figure.classList.add('new');
         
@@ -253,10 +235,73 @@ function displayArtwork(showAll) {
         portfolio.querySelectorAll('figure.new').forEach(fig => {
             fig.classList.remove('new');
         });
+        layoutMasonry();
         attachLightboxListeners();
-    }, 600);
+    }, 100);
 }
 
+function layoutMasonry() {
+    const portfolio = document.querySelector('.portfolio');
+    if (!portfolio) return;
+    
+    if (window.innerWidth <= 768) {
+        portfolio.style.height = 'auto';
+        const figures = Array.from(portfolio.querySelectorAll('figure'));
+        figures.forEach(figure => {
+            figure.style.position = '';
+            figure.style.left = '';
+            figure.style.top = '';
+            figure.style.width = '';
+        });
+        return;
+    }
+    
+    const figures = Array.from(portfolio.querySelectorAll('figure'));
+    const columns = 5;
+    const gap = 40;
+    
+    const portfolioWidth = portfolio.offsetWidth;
+    const columnWidth = (portfolioWidth - (gap * (columns - 1))) / columns;
+    
+    const columnHeights = new Array(columns).fill(0);
+    
+    figures.forEach((figure, index) => {
+        const img = figure.querySelector('img');
+        
+        if (img.complete) {
+            positionFigure(figure, img, columnWidth, columnHeights, gap, columns);
+        } else {
+            img.onload = () => {
+                positionFigure(figure, img, columnWidth, columnHeights, gap, columns);
+            };
+        }
+    });
+}
+
+function positionFigure(figure, img, columnWidth, columnHeights, gap, columns) {
+
+    const shortestColumn = columnHeights.indexOf(Math.min(...columnHeights));
+    
+    const left = shortestColumn * (columnWidth + gap);
+    const top = columnHeights[shortestColumn];
+    
+    figure.style.position = 'absolute';
+    figure.style.left = left + 'px';
+    figure.style.top = top + 'px';
+    figure.style.width = columnWidth + 'px';
+    
+    const aspectRatio = img.naturalHeight / img.naturalWidth;
+    const figureHeight = (columnWidth * aspectRatio) + 40;
+    
+    columnHeights[shortestColumn] += figureHeight;
+    
+    const maxHeight = Math.max(...columnHeights);
+    figure.parentElement.style.height = maxHeight + 'px';
+}
+
+window.addEventListener('resize', () => {
+    layoutMasonry();
+});
 
 // Lightbox
 function attachLightboxListeners() {

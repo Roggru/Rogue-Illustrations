@@ -38,19 +38,26 @@
 
     .container-all-port{
         width: 100%;
-        margin: 0 auto;}
+        margin: 0 auto;
+        overflow-x: hidden;}
     .portfolio{
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
         margin: 0 auto;
-        padding: 25px;}
-        .lightbox-inner{
-            padding: 30px;}
-        .lightbox img{
-            max-width: 80vw;}
-        .lightbox img.long{
-            max-width: 80vw;}
+        justify-items: center;
+        padding: 25px;
+        box-sizing: border-box;}
+        .portfolio figure{
+            position: static;
+            margin: 0 0 40px 0;
+            display: flex;
+            width: 90%;}
+            .lightbox-inner{
+                padding: 30px;}
+            .lightbox img{
+                max-width: 80vw;}
+            .lightbox img.long{
+                max-width: 80vw;}
 
     .db-list{
         display: block;}
