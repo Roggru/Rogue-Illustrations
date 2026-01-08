@@ -208,6 +208,7 @@ function displayArtwork(showAll) {
         ? allArtwork 
         : allArtwork.filter(art => art.category === "portfolio");
     
+    portfolio.style.opacity = '0';
     portfolio.innerHTML = '';
     
     let imagesLoaded = 0;
@@ -226,13 +227,17 @@ function displayArtwork(showAll) {
         img.onload = () => {
             imagesLoaded++;
             if (imagesLoaded === totalImages) {
+                layoutMasonry();
+                
                 setTimeout(() => {
                     portfolio.querySelectorAll('figure.new').forEach(fig => {
                         fig.classList.remove('new');
                     });
-                    layoutMasonry();
+
+                    portfolio.style.transition = 'opacity 0.3s ease';
+                    portfolio.style.opacity = '1';
                     attachLightboxListeners();
-                }, 100);
+                }, 50);
             }
         };
         
