@@ -210,6 +210,9 @@ function displayArtwork(showAll) {
     
     portfolio.innerHTML = '';
     
+    let imagesLoaded = 0;
+    const totalImages = filtered.length;
+    
     filtered.forEach(art => {
         const figure = document.createElement('figure');
         if (art.isLong) figure.classList.add('long');
@@ -219,6 +222,19 @@ function displayArtwork(showAll) {
         const img = document.createElement('img');
         img.src = art.src;
         img.alt = art.title;
+        
+        img.onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === totalImages) {
+                setTimeout(() => {
+                    portfolio.querySelectorAll('figure.new').forEach(fig => {
+                        fig.classList.remove('new');
+                    });
+                    layoutMasonry();
+                    attachLightboxListeners();
+                }, 100);
+            }
+        };
         
         const figcaption = document.createElement('figcaption');
         figcaption.innerHTML = `
@@ -230,14 +246,6 @@ function displayArtwork(showAll) {
         figure.appendChild(figcaption);
         portfolio.appendChild(figure);
     });
-    
-    setTimeout(() => {
-        portfolio.querySelectorAll('figure.new').forEach(fig => {
-            fig.classList.remove('new');
-        });
-        layoutMasonry();
-        attachLightboxListeners();
-    }, 100);
 }
 
 function layoutMasonry() {

@@ -132,6 +132,10 @@ transform: translateY(-30px);}
         padding: 15px 0;}
     .bk-lane img{
         width: 70%;}
+.bk-lane a{
+    text-decoration: none;}
+    .bk-lane a:hover{
+        text-decoration: underline;}
 
 .flex-left{
     height: auto;
