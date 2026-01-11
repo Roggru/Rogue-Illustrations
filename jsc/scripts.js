@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html"];
+const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "beasts/enera.html", "beasts/rahznir.html"];
 
 function getBasePath() {
     const path = window.location.pathname;

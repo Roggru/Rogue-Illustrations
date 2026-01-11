@@ -102,6 +102,9 @@ transform: translateY(-30px);}
     padding: 40px 0px;}
     .bk-showcase img{
         width: min(95%, 1400px);}
+    .bk-showcase video{
+        width: min(95%, 1400px);
+        pointer-events: none;}
 .speak{
     position: relative;
     width: 30%;
