@@ -339,6 +339,7 @@ p{
 .quote{
     margin: 40px auto;
     width: 90%;
+    font-size: min(1.1rem, 3.8vw);
 }
 .status{
     font-size: 1.3rem;

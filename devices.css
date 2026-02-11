@@ -73,6 +73,9 @@
     .passage{
         width: 85vw;
         text-align: justify;}
+        .quote{
+            margin: 20px auto;
+            width: 75vw;}
     .p2{
         margin: 20px;}
     .back{
