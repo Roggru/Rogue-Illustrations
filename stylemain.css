@@ -64,17 +64,16 @@ transform: translateY(-30px);}
     .display a{
         text-decoration: none;}
 .db-list{
-    display: flex;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 50px auto;
+    justify-items: center;
     align-items: center;
-    justify-content: center;
+    width: 90%;
     max-width: 70vw;
-    padding: 2rem;
-    gap: 5rem;}
-.db-list img, .db-list h2{
-    flex: 1;} 
+    padding: 2rem;}
     .db-list img{
-        flex: 0 0 auto;
+        height: 100%;
         width: clamp(300px, 20vw, 650px);}
 .column{
     display: flex;
@@ -336,6 +335,10 @@ p{
     font-style: italic;
     padding-top: 40px;
     line-height: 1px;
+}
+.quote{
+    margin: 40px auto;
+    width: 90%;
 }
 .status{
     font-size: 1.3rem;
