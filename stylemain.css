@@ -142,6 +142,11 @@ transform: translateY(-30px);}
     .bk-lane a:hover{
         text-decoration: underline;}
 
+.classification{
+    background-color: #141416;
+    overflow: hidden;
+    margin: 15px;
+    padding: 0 15px 0 15px;}
 .flex-left{
     height: auto;
     float: left;
@@ -290,12 +295,12 @@ a{
 }
 
 h1{
-    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 300;
     text-align: center;
 }
 h2{
-    font-size: clamp(1rem, 10vw, 3rem);
+    font-size: clamp(1rem, 10vw, 3.5rem);
     font-weight: 300;
     text-align: center;
 }
@@ -308,7 +313,7 @@ h3{
 h4{
     font-family: "Cormorant Garamond", serif;
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: center;
 }
 .subtext{
@@ -342,8 +347,9 @@ p{
     font-size: min(1.1rem, 3.8vw);
 }
 .status{
-    font-size: 1.3rem;
-    line-height: 2;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    text-align: center;
 }
 
 /*Buttons—————————————————————————————————————————————————————————————————————————————————*/
