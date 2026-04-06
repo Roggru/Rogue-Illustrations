@@ -61,6 +61,8 @@
 
     .db-list{
         display: block;}
+        .db-list img{
+            width: 85%;}
     .column{
         display: block;}
         .column img{
