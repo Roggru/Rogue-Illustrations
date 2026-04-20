@@ -61,11 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html", "beasts/enera.html", "beasts/rahznir.html"];
+const pages = ["portfolio.html", "end.html", 
+    //--//
+    "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html",
+    //--// 
+    "beasts/enera.html", "beasts/rahznir.html",
+    //--//
+    "analects/osteon.html"];
 
 function getBasePath() {
     const path = window.location.pathname;
-    if (path.includes('/divinebeings/') || path.includes('/daemonicbeings/') || path.includes('/beasts/')) {
+    if (path.includes('/divinebeings/') || path.includes('/daemonicbeings/') || path.includes('/beasts/') || path.includes('/analects/')) {
         return '../';
     }
     return '';
@@ -529,3 +535,19 @@ function revealText(bkp, bkpT, showTranslation, callback) {
         }, delay);
     }
 }
+
+
+//Analects
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+    const revealPoint = pageHeight * 0.8;
+    
+    const hiddenElements = document.querySelectorAll('.analect-hidden');
+    
+    hiddenElements.forEach(function(element) {
+        if (scrollPosition >= revealPoint) {
+            element.classList.add('analect-header');
+        }
+    });
+});
