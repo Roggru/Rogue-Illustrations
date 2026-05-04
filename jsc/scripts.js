@@ -327,6 +327,7 @@ window.addEventListener('resize', () => {
 function attachLightboxListeners() {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxTitle = document.getElementById("lightbox-title");
     const lightboxInner = document.querySelector(".lightbox-inner");
     const containerAllPort = document.querySelector(".container-all-port");
     const captionBtn = document.getElementById("caption-btn");
@@ -347,7 +348,17 @@ function attachLightboxListeners() {
             lightboxImg.src = newImg.src;
             lightboxImg.alt = newImg.alt;
             
-            if (figcaption && figcaption.innerHTML.trim()) {
+            const titleElement = figcaption ? figcaption.querySelector("h3") : null;
+            if (titleElement) {
+                lightboxTitle.textContent = titleElement.textContent;
+            } else {
+                lightboxTitle.textContent = newImg.alt || "";
+            }
+            
+            const captionContent = figcaption ? figcaption.querySelector("p.passage") : null;
+            const hasCaption = captionContent && captionContent.textContent.trim();
+            
+            if (hasCaption) {
                 captionText.innerHTML = figcaption.innerHTML;
                 captionBtn.classList.remove("hidden");
             } else {

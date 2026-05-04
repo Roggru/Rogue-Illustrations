@@ -71,8 +71,9 @@
 .lightbox-inner {
     position: relative;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 80px;
     z-index: 2;
     transition: max-width 0.4s ease-in-out, max-height 0.4s ease-in-out;
@@ -83,6 +84,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
 }
 
 .lightbox.show {
@@ -91,7 +93,7 @@
 
 .lightbox img {
     max-width: 60vw;
-    max-height: 75vh;
+    max-height: calc(90vh - 160px);
     width: auto;
     height: auto;
     display: block;
@@ -115,7 +117,7 @@ body::after {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.45);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -124,7 +126,16 @@ body::after {
 
 body.lightbox-active::after {
     opacity: 1;
+    animation: gradualDarken 15s ease-in-out forwards;
 }
+    @keyframes gradualDarken {
+        0% {
+            background-color: rgba(0, 0, 0, 0.45);
+        }
+        100% {
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+    }
 .container-all-port.blurred {
     filter: blur(4px);
     pointer-events: none;
@@ -145,6 +156,44 @@ body.lightbox-active::after {
     padding-bottom: 20px;
 }
 
+
+.lightbox-title {
+    font-size: clamp(1.8rem, 5vw, 36px);
+    margin: 0 0 20px 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    transition: opacity 1s ease;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
+.lightbox:hover .lightbox-title {
+    opacity: 1;
+}
+
+.lightbox-inner:not(.long-layout) .lightbox-title {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lightbox-inner.long-layout .lightbox-title {
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+}
+
+.lightbox-inner.caption-expanded .lightbox-title {
+    display: none;
+}
 
 .caption {
     position: absolute;
@@ -180,6 +229,8 @@ body.lightbox-active::after {
 }
 
 .lightbox-inner.caption-expanded:not(.long-layout) {
+    flex-direction: row;
+    align-items: flex-start;
     max-width: 98vw;
     gap: 50px;
     padding: 80px 40px;
