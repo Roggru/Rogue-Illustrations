@@ -369,6 +369,7 @@ function attachLightboxListeners() {
             
             lightbox.classList.add("show");
             containerAllPort.classList.add("blurred");
+            document.body.classList.add("lightbox-active");
         });
     });
 }
@@ -420,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 lightboxInner.classList.remove("caption-expanded");
                 lightbox.classList.remove("caption-active");
                 lightbox.classList.remove("long-layout-active");
+                document.body.classList.remove("lightbox-active");
             }
         });
 
