@@ -1,5 +1,12 @@
 [
     {
+        "src": "Images/Art/Lead.png",
+        "title": "Lead",
+        "caption": "",
+        "category": "story",
+        "isLong": true
+    },
+    {
         "src": "Images/Art/Worlds Asunder.png",
         "title": "Worlds Asunder",
         "caption": "",
