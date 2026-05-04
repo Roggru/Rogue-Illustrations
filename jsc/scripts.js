@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const cordImageFilename = "Knight-Wander-3.png";
-const pages = ["portfolio.html", "end.html", 
+const pages = 
+    ["end.html", 
     //--//
     "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html",
     //--// 

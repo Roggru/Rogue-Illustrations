@@ -183,6 +183,8 @@ body.lightbox-active::after {
     max-width: 98vw;
     gap: 50px;
     padding: 80px 40px;
+    overflow-y: auto;
+    max-height: calc(90vh - 160px);
 }
 
 .lightbox-inner.long-layout .caption {
