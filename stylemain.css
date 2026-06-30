@@ -44,8 +44,8 @@ grid-template-rows: repeat(11, 1fr);
 width: 1400px;
 margin: 0 auto;
 transform: translateY(-30px);}
-    .item-1{grid-area: 3 / 4 / 6 / 6;}
-    .item-2{grid-area: 3 / 4 / 8 / 6;}
+    .item-1{grid-area: 3 / 3 / 6 / 6;}
+    .item-2{grid-area: 3 / 3 / 8 / 6;}
     .item-3{grid-area: 1 / 1 / -1 / 10; position: relative; display: inline-block; transform: translateY(-40px);}
 .container-3{
     margin: 0 auto;
@@ -227,8 +227,8 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    z-index: 100;
+    background-color: #1b1b1d;
+    z-index: 10;
 
     opacity: 0;
     visibility: hidden;

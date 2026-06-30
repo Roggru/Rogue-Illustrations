@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = 
     ["end.html", 
@@ -78,6 +77,7 @@ function getBasePath() {
     return '';
 }
 
+
 //Wanderer
 function setupRandomLink() {
     const box = document.getElementById("shift");
@@ -86,55 +86,157 @@ function setupRandomLink() {
     const img1 = box.querySelector(".i3-1");
     const img2 = box.querySelector(".i3-2");
     const link = document.getElementById("randomLink");
-    const overlay = document.getElementById("shift-screen");
+    const sequenceContainer = document.getElementById("sequence-container");
 
-    if (!link || !overlay) return;
+    if (!link || !sequenceContainer) return;
+    let hasBeenClicked = false;
 
     box.addEventListener("mouseenter", () => {
-        img1.style.opacity = 0;
-        img2.style.opacity = 1;
+        if (!hasBeenClicked){
+            img1.style.opacity = 0;
+            img2.style.opacity = 1;
+        }
     });
     box.addEventListener("mouseleave", () => {
-        img1.style.opacity = 1;
-        img2.style.opacity = 0;
+        if (!hasBeenClicked){
+            img1.style.opacity = 1;
+            img2.style.opacity = 0;   
+        }
     });
 
     link.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem("cordEnabled", "true");
 
-        overlay.classList.remove("no-transition");
+        hasBeenClicked = true;
+        img1.style.opacity = 0;
+        img2.style.opacity = 1;
+
         document.body.style.overflow = "hidden";
 
-        setTimeout(() => {
-            overlay.classList.add("shift-screen-show");
-        }, 10);
+        const shiftScreen = document.getElementById("shift-screen");
+        if (shiftScreen) {
+            shiftScreen.classList.remove("no-transition");
+            shiftScreen.classList.add("shift-screen-show");
+        }
 
-        setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * pages.length);
-            window.location.href = pages[randomIndex];
-        }, 4000);
+        const verticalOffset = 150;
+
+        const rect = img2.getBoundingClientRect();
+        const elementCenterY = rect.top + window.scrollY + (rect.height / 2);
+        const targetScrollY = elementCenterY - (window.innerHeight / 2) - verticalOffset;
+
+        const startVideo = () => {
+            const updatedRect = img2.getBoundingClientRect();
+            sequenceContainer.style.display = "block";
+
+            playVideoSequence(sequenceContainer, updatedRect, () => {
+                const randomIndex = Math.floor(Math.random() * pages.length);
+                window.location.href = pages[randomIndex];
+            });
+        };
+
+        const distance = Math.abs(window.scrollY - targetScrollY);
+        if (distance < 5) {
+            startVideo();
+            return;
+        }
+
+        window.scrollTo({
+            top: targetScrollY,
+            left: window.scrollX,
+            behavior: "smooth"
+        });
+
+        let scrollTimeout;
+        const onScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                window.removeEventListener("scroll", onScroll);
+                startVideo();
+            }, 50);
+        };
+
+        window.addEventListener("scroll", onScroll);
+
+        scrollTimeout = setTimeout(() => {
+            window.removeEventListener("scroll", onScroll);
+            startVideo();
+        }, 1000);
     });
 }
 
-//Shift
-(function() {
-    const overlay = document.getElementById("shift-screen");
-    if (overlay) {
-        overlay.classList.add("no-transition");
-        overlay.classList.remove("shift-screen-show");
-        document.body.style.overflow = "";
-    }
-})();
+function playVideoSequence(container, startRect, onComplete) {
+    const video = container.querySelector("video");
+
+    console.log("Knight displayed width:", startRect.width);
+    
+    // Configuration
+    const offsetXRatio = -970 / 583.6666870117188;
+    const offsetYRatio = -850 / 583.6666870117188;
+    const manualScale = 1.3;
+    
+    // Native dimensions
+    const videoNativeWidth = 4320;
+    const videoNativeHeight = 2550;
+    const knightNativeWidth = 1440;
+    
+    video.pause();
+    video.currentTime = 0;
+    
+    const nativeRatio = videoNativeWidth / knightNativeWidth;
+    const knightDisplayedWidth = startRect.width;
+    
+    const finalWidth = knightDisplayedWidth * nativeRatio * manualScale;
+    const finalHeight = (videoNativeHeight / videoNativeWidth) * finalWidth;
+    
+    const offsetX = knightDisplayedWidth * offsetXRatio;
+    const offsetY = knightDisplayedWidth * offsetYRatio;
+    
+    const finalLeft = startRect.left + offsetX;
+    const finalTop = startRect.top + offsetY;
+    
+    video.style.position = "fixed";
+    video.style.top = finalTop + "px";
+    video.style.left = finalLeft + "px";
+    video.style.width = finalWidth + "px";
+    video.style.height = finalHeight + "px";
+    video.style.objectFit = "fill";
+    video.style.zIndex = "99999";
+    
+    void video.offsetWidth;
+    
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            video.play().catch(err => {
+                console.error("Video play failed:", err);
+            });
+        });
+    });
+    
+    video.onended = () => {
+        if (onComplete) onComplete();
+    };
+}
 
 window.addEventListener("pageshow", (event) => {
-    const overlay = document.getElementById("shift-screen");
-    if (overlay) {
-        overlay.classList.add("no-transition");
-        overlay.classList.remove("shift-screen-show");
+    const sequenceContainer = document.getElementById("sequence-container");
+    if (sequenceContainer) {
+        sequenceContainer.style.display = "none";
         document.body.style.overflow = "";
-        
-        void overlay.offsetWidth;
+
+        const video = sequenceContainer.querySelector("video");
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        const shiftScreen = document.getElementById("shift-screen");
+        if (shiftScreen) {
+            shiftScreen.classList.add("no-transition");
+            shiftScreen.classList.remove("shift-screen-show");
+            void shiftScreen.offsetWidth;
+        }
     }
     checkCordVisibility();
 });
