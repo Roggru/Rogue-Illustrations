@@ -114,23 +114,80 @@ function setupRandomLink() {
 
         document.body.style.overflow = "hidden";
 
-        const shiftScreen = document.getElementById("shift-screen");
-        if (shiftScreen) {
-            shiftScreen.classList.remove("no-transition");
-            shiftScreen.classList.add("shift-screen-show");
-        }
-
         const verticalOffset = 150;
-
-        const rect = img2.getBoundingClientRect();
+        const rect = box.getBoundingClientRect();
         const elementCenterY = rect.top + window.scrollY + (rect.height / 2);
         const targetScrollY = elementCenterY - (window.innerHeight / 2) - verticalOffset;
 
         const startVideo = () => {
-            const updatedRect = img2.getBoundingClientRect();
+            const updatedRect = box.getBoundingClientRect();
+            const img2Rect = img2.getBoundingClientRect();
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+
+            const scale = img2Rect.width / 583.6666870117188;
+            const extraTop = 15 * scale;
+
+            const covers = [
+                { top: 0, left: 0, width: img2Rect.left, height: vh },
+                { top: 0, left: img2Rect.right, width: vw - img2Rect.right, height: vh },
+                { top: 0, left: img2Rect.left, width: img2Rect.width, height: img2Rect.top + extraTop },
+                { top: img2Rect.bottom, left: img2Rect.left, width: img2Rect.width, height: vh - img2Rect.bottom }
+            ];
+
+            covers.forEach(pos => {
+                const cover = document.createElement("div");
+                cover.className = "dynamic-shift-cover";
+                cover.style.cssText = `
+                    position: fixed;
+                    top: ${pos.top}px;
+                    left: ${pos.left}px;
+                    width: ${pos.width}px;
+                    height: ${pos.height}px;
+                    background: #1b1b1d;
+                    z-index: 500;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 2s ease;
+                `;
+                document.body.appendChild(cover);
+            });
+
+            const text = document.createElement("h3");
+            text.id = "sequence-text";
+            text.textContent = "Good luck";
+            text.style.cssText = `
+                position: fixed;
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #1b1b1d;
+                font-family: "Cormorant SC", serif;
+                font-size: 5rem;
+                z-index: 99999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 2s ease;
+                margin: 0;
+                white-space: nowrap;
+            `;
+            document.body.appendChild(text);
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    document.querySelectorAll(".dynamic-shift-cover").forEach(cover => {
+                        cover.style.opacity = "1";
+                    });
+                    text.style.opacity = "1";
+                });
+            });
+
             sequenceContainer.style.display = "block";
 
-            playVideoSequence(sequenceContainer, updatedRect, () => {
+            playVideoSequence(sequenceContainer, img2Rect, () => {
+                document.querySelectorAll(".dynamic-shift-cover").forEach(c => c.remove());
+                const t = document.getElementById("sequence-text");
+                if (t) t.remove();
                 const randomIndex = Math.floor(Math.random() * pages.length);
                 window.location.href = pages[randomIndex];
             });
@@ -230,14 +287,12 @@ window.addEventListener("pageshow", (event) => {
             video.pause();
             video.currentTime = 0;
         }
-
-        const shiftScreen = document.getElementById("shift-screen");
-        if (shiftScreen) {
-            shiftScreen.classList.add("no-transition");
-            shiftScreen.classList.remove("shift-screen-show");
-            void shiftScreen.offsetWidth;
-        }
     }
+
+    document.querySelectorAll(".dynamic-shift-cover").forEach(c => c.remove());
+    const text = document.getElementById("sequence-text");
+    if (text) text.remove();
+
     checkCordVisibility();
 });
 
