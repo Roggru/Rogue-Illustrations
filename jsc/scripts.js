@@ -185,9 +185,6 @@ function setupRandomLink() {
             sequenceContainer.style.display = "block";
 
             playVideoSequence(sequenceContainer, img2Rect, () => {
-                document.querySelectorAll(".dynamic-shift-cover").forEach(c => c.remove());
-                const t = document.getElementById("sequence-text");
-                if (t) t.remove();
                 const randomIndex = Math.floor(Math.random() * pages.length);
                 window.location.href = pages[randomIndex];
             });
