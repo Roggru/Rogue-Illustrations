@@ -81,7 +81,8 @@
     .p2{
         margin: 20px;}
     .back{
-        left: 5vw;}
+        display: none;
+        pointer-events: none;}
 
     .notif{
         display: block;}

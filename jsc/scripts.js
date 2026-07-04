@@ -164,6 +164,7 @@ function setupRandomLink() {
                 color: #1b1b1d;
                 font-family: "Cormorant SC", serif;
                 font-size: 5rem;
+                text-transform: uppercase;
                 z-index: 99999;
                 opacity: 0;
                 pointer-events: none;
