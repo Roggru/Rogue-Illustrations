@@ -1,5 +1,12 @@
 [
     {
+        "src": "Images/Art/Illustration - Syrecon.png",
+        "title": "Syrecon",
+        "caption": "Bright may the path be.",
+        "category": "story",
+        "isLong": false
+    },
+    {
         "src": "Images/Art/Lead.png",
         "title": "Lead",
         "caption": "",
@@ -23,7 +30,7 @@
     {
         "src": "Images/Art/Illustration - Immirus.png",
         "title": "Immirus",
-        "caption": "",
+        "caption": "Strong may his fire burn.",
         "category": "story",
         "isLong": false
     },
@@ -95,6 +102,13 @@
         "title": "Burning",
         "caption": "",
         "category": "portfolio",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/Prime of the Quintessential.jpg",
+        "title": "Prime of the Quintessential",
+        "caption": "",
+        "category": "story",
         "isLong": false
     },
     {

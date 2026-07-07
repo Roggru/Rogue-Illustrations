@@ -63,7 +63,7 @@ const cordImageFilename = "Knight-Wander-3.png";
 const pages = 
     ["end.html", 
     //--//
-    "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html",
+    "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html", "divinebeings/syrecon.html",
     //--// 
     "beasts/enera.html", "beasts/rahznir.html",
     //--//
