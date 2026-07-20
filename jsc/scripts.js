@@ -474,6 +474,19 @@ function positionFigure(figure, img, columnWidth, columnHeights, gap, columns) {
     figure.parentElement.style.height = maxHeight + 'px';
 }
 
+function fitTitleText(el) {
+    const maxFontSize = 36;
+    const minFontSize = 16;
+    let fontSize = maxFontSize;
+    
+    el.style.fontSize = fontSize + 'px';
+    
+    while (el.scrollWidth > el.clientWidth && fontSize > minFontSize) {
+        fontSize -= 1;
+        el.style.fontSize = fontSize + 'px';
+    }
+}
+
 window.addEventListener('resize', () => {
     layoutMasonry();
 });
@@ -537,6 +550,10 @@ function attachLightboxListeners() {
             lightbox.classList.add("show");
             containerAllPort.classList.add("blurred");
             document.body.classList.add("lightbox-active");
+
+            requestAnimationFrame(() => {
+                fitTitleText(lightboxTitle);
+            });
         });
     });
 }
