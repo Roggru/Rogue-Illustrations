@@ -133,7 +133,7 @@ body.lightbox-active::after {
             background-color: rgba(0, 0, 0, 0.45);
         }
         100% {
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.88);
         }
     }
 .container-all-port.blurred {
@@ -235,6 +235,7 @@ body.lightbox-active::after {
     gap: 50px;
     padding: 80px 40px;
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: calc(90vh - 160px);
 }
 
@@ -292,18 +293,15 @@ body.lightbox-active::after {
 
 .lightbox-inner.long-layout.caption-expanded {
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: calc(90vh - 160px);
 }
 
-.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar {
-    width: 2px;
-}
+.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar {width: 2px;}
+.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar-thumb {background: rgba(255, 255, 255, 0.3); border-radius: 4px;}
+.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar-thumb:hover {background: rgba(255, 255, 255, 0.5);}
 
-.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-}
-
-.lightbox-inner.long-layout.caption-expanded::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
+.lightbox-inner.caption-expanded:not(.long-layout)::-webkit-scrollbar {width: 2px;}
+.lightbox-inner.caption-expanded:not(.long-layout)::-webkit-scrollbar-thumb {background: rgba(255, 255, 255, 0.3);
+border-radius: 4px;}
+.lightbox-inner.caption-expanded:not(.long-layout)::-webkit-scrollbar-thumb:hover {background: rgba(255, 255, 255, 0.5);}
