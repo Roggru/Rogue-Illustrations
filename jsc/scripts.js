@@ -91,6 +91,20 @@ function setupRandomLink() {
     if (!link || !sequenceContainer) return;
     let hasBeenClicked = false;
 
+    function resetState() {
+        hasBeenClicked = false;
+        img1.style.opacity = 1;
+        img2.style.opacity = 0;
+        document.body.style.overflow = "";
+        document.querySelectorAll(".dynamic-shift-cover").forEach(el => el.remove());
+        const text = document.getElementById("sequence-text");
+        if (text) text.remove();
+    }
+
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) resetState();
+    });
+
     box.addEventListener("mouseenter", () => {
         if (!hasBeenClicked){
             img1.style.opacity = 0;
