@@ -107,7 +107,7 @@ transform: translateY(-30px);}
     .bk-showcase img{
         width: min(95%, 1400px);}
     .bk-showcase video{
-        width: min(95%, 1400px);
+        width: max(70%, 1400px);
         pointer-events: none;}
 .speak{
     position: relative;
@@ -146,6 +146,13 @@ transform: translateY(-30px);}
     text-decoration: none;}
     .bk-lane a:hover{
         text-decoration: underline;}
+
+.bkslide a{
+    text-decoration: none;}
+    .bkslide a:hover{
+        text-decoration: underline;}
+    .bkslide img{
+        width: 85%;}
 
 .classification{
     background-color: #141416;
@@ -330,6 +337,11 @@ p{
     font-style: italic;
     padding-top: 40px;
     line-height: 1px;
+}
+.story{
+    margin: 0 auto;
+    font-size: min(1.1rem, 3.8vw);
+    text-indent: 60px;
 }
 .quote{
     margin: 40px auto;

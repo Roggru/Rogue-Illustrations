@@ -65,7 +65,7 @@ const pages =
     //--//
     "divinebeings/arabas.html", "divinebeings/melthildkhyne.html", "divinebeings/immirus.html", "divinebeings/apex.html", "divinebeings/syrecon.html",
     //--// 
-    "beasts/enera.html", "beasts/rahznir.html",
+    "beasts/enera.html", "beasts/rahznir.html", "beasts/namelessruin.html",
     //--//
     "analects/osteon.html"];
 

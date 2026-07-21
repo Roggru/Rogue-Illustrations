@@ -1,5 +1,12 @@
 [
     {
+        "src": "Images/Art/The Black Eclipse.png",
+        "title": "The Black Eclipse",
+        "caption": "",
+        "category": "story",
+        "isLong": true
+    },
+    {
         "src": "Images/Art/Illustration - Syrecon.png",
         "title": "Syrecon",
         "caption": "Bright may his path lay.",
