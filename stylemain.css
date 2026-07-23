@@ -222,7 +222,7 @@ nav a{color: var(--color-text); text-decoration: none;
     z-index: -10;}
 
 /*Text/Styles—————————————————————————————————————————————————————————————————————————————*/
-a{color: var(--color-text); text-decoration: underline;}
+a{color: var(--color-text); text-decoration: underline; text-decoration-thickness: 1px;}
 
 
 
