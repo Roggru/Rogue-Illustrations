@@ -42,7 +42,24 @@
         margin: 0 0 40px 0;
         display: flex;
         width: 90%;}
+    
+    /* !Fix */
+    /* Fix the right side margin misalignment. */
+    .lightbox-inner{padding: 0px;}
+    .lightbox img{max-width: 90vw;}
+    .lightbox img.long{max-width: 90vw;}
 
+
+/* Divine */
+
+/* Beasts */
+    .bk-list{
+        padding: 1rem;
+        
+        figure{margin: 10px;}
+        img{width: clamp(100px, 40vw, 300px);}}
+    .bk-lane a{width: 100%;}
+    .bkslide a{img{width: 100%;}}
 
 
 
@@ -50,21 +67,11 @@
 }
 
 /* @media (max-width: 767px){
-            .lightbox-inner{padding: 30px;}
-            .lightbox img{max-width: 80vw;}
-            .lightbox img.long{max-width: 80vw;}
 
     .db-list{display: block;}
         .db-list img{width: 90%;}
     .column{display: block;}
         .column img{width: 300px;}
-
-    .bk-showcase video{width: 95%;}
-    .bk-list{padding: 1rem;}
-    .bk-list figure{margin: 10px;}
-        .bk-list img { width: clamp(100px, 40vw, 300px);}
-    .bk-lane a{width: 100%;}
-    .bkslide img{width: 100%;}
             
     .backscape{display: none;}
 
