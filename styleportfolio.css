@@ -1,57 +1,29 @@
-.container-all-port {
+.container-all-port{
     margin: 0 auto;
-    width: max(1500px, 75vw);
-    font-family: "Cormorant SC", serif;
-    opacity: 0;
-    transform: translateY(15px);
-    animation: slideUp .5s ease-out forwards;
-}
+    width: max(min(90vw, 1500px), 75vw);
+    opacity: 0; transform: translateY(15px);
+    animation: slideUp .5s ease-out forwards;}
 
-@keyframes slideUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.portfolio {
+.portfolio{
     position: relative;
-    width: 100%;
     padding-bottom: 50px;
-}
 
-.portfolio figure {
-    margin: 0 0 40px 0;
-    width: 100%;
-}
-.portfolio figure.new{
-    animation: fadeUp 0.5s ease-out forwards;
-}
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);}
-    to {
-        opacity: 1;
-        transform: translateY(0);}
-}
+    figure{margin: 0 0 40px 0; width: 100%;
+        &.new{animation: fadeUp .5s ease-out forwards;}}
+    figcaption{display: none;}
 
-.portfolio figcaption {
-    display: none;
-}
+    img{display: block;
+        width: 100%; height: auto;
+        transition: transform .25s ease-in-out;
 
-.portfolio img {
-    width: 100%;
-    height: auto;
-    transition: all .25s ease-in-out;
-    display: block;
-}
-.portfolio img:hover {
-    scale: 1.05;
-}
+        &:hover{transform: scale(1.05);}}}
+@keyframes fadeUp{
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}}
 
+.button-space{ margin: 0 auto; margin-top: 20px; margin-bottom: 100px; text-align: center;}
 
-
+/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -67,8 +39,7 @@
     transform: translate(-50%, -50%);
     
     transition: max-width 0.9s cubic-bezier(0.65, 0, 0.35, 1), 
-                max-height 0.9s cubic-bezier(0.65, 0, 0.35, 1);
-}
+                max-height 0.9s cubic-bezier(0.65, 0, 0.35, 1);}
 
 .lightbox-inner {
     position: relative;
@@ -139,13 +110,8 @@ body.lightbox-active::after {
     animation: gradualDarken 15s ease-in-out forwards;
 }
     @keyframes gradualDarken {
-        0% {
-            background-color: rgba(0, 0, 0, 0.45);
-        }
-        100% {
-            background-color: rgba(0, 0, 0, 0.88);
-        }
-    }
+        0% {background-color: rgba(0, 0, 0, 0.45);}
+        100% {background-color: rgba(0, 0, 0, 0.88);}}
 .container-all-port.blurred {
     filter: blur(4px);
     pointer-events: none;

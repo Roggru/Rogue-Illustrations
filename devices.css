@@ -1,12 +1,11 @@
 @media (max-width: 767px){
-    .container-all{
-        width: 100%;}
-    .container-1{
-        width: 100%;}
-    .display{
-        flex-direction: column;}   
-    
-    .container-2{
+/* Main */
+    .container-1{padding-bottom: 0;}
+    .container-2{width: 100%;}
+
+    .display{flex-direction: column;}  
+
+    .grid-wander{
         width: 100%;
         display: grid;
         grid-template-columns: 1fr;
@@ -17,7 +16,6 @@
     .item-3 {
         position: relative;
         width: 90vw;
-        max-width: 500px;
         margin: 0 auto;
         display: block;}
         .item-3 img{
@@ -29,77 +27,52 @@
             max-width: 500px;
             height: auto;}
 
-    .container-3{
-        width: 100%;}
-    .flex-left, .flex-right{
-        float: none;
-        display: block;
-        margin: 0 auto;}
+    .flex-img--left, .flex-img--right{float: none; display: block; margin: 0 auto;}
 
-    .container-all-port{
-        width: 100%;
-        margin: 0 auto;
-        overflow-x: hidden;}
+/* Portfolio */
+    .container-all-port{width: 100%;}
     .portfolio{
-        display: grid;
-        grid-template-columns: 1fr;
+        display: grid; grid-template-columns: 1fr;
         margin: 0 auto;
         justify-items: center;
         padding: 25px;
         box-sizing: border-box;}
-        .portfolio figure{
-            position: static;
-            margin: 0 0 40px 0;
-            display: flex;
-            width: 90%;}
-            .lightbox-inner{
-                padding: 30px;}
-            .lightbox img{
-                max-width: 80vw;}
-            .lightbox img.long{
-                max-width: 80vw;}
-
-    .db-list{
-        display: block;}
-        .db-list img{
-            width: 90%;}
-    .column{
-        display: block;}
-        .column img{
-            width: 300px;}
-            
-    .backscape{
-        display: none;}
+    .portfolio figure{
+        position: static;
+        margin: 0 0 40px 0;
+        display: flex;
+        width: 90%;}
 
 
-    .passage{
-        width: 85vw;
-        text-align: justify;}
-        .quote{
-            margin: 20px auto;
-            width: 75vw;}
-    .p2{
-        margin: 20px;}
-    .back{
-        display: none;
-        pointer-events: none;}
 
-    .notif{
-        display: block;}
+
+    .back{display: none; pointer-events: none;}
 }
 
+/* @media (max-width: 767px){
+            .lightbox-inner{padding: 30px;}
+            .lightbox img{max-width: 80vw;}
+            .lightbox img.long{max-width: 80vw;}
+
+    .db-list{display: block;}
+        .db-list img{width: 90%;}
+    .column{display: block;}
+        .column img{width: 300px;}
+
+    .bk-showcase video{width: 95%;}
+    .bk-list{padding: 1rem;}
+    .bk-list figure{margin: 10px;}
+        .bk-list img { width: clamp(100px, 40vw, 300px);}
+    .bk-lane a{width: 100%;}
+    .bkslide img{width: 100%;}
+            
+    .backscape{display: none;}
 
 
-/*? Add an a Ipad query.  */
-/* @media (min-width: 768px){
-    .container-all{
-        width: 100%;}
-    .container-1{
-        width: 100%;}
-    .display{
-        flex-direction: row;}
-} */
+    .passage{width: 85vw; text-align: justify;}
+        .quote{margin: 20px auto; width: 75vw;}
+    .p2{margin: 20px;}
+    .back{display: none; pointer-events: none;}
 
-/* @media (min-width: 992px){
-
+    .notif{display: block;}
 } */
