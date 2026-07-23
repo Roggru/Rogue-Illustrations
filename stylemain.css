@@ -5,6 +5,7 @@ html{height: 100%;}
     --color-bg: #1b1b1d;
     --color-bg-alt: #141416;
     --color-text: #FFFFFF;
+    --color-text-alt: #d8d8d8;
     --color-text-muted: #808080;
     --color-text-link: #ffde90;
     --color-divider: #ffffff25;
@@ -116,6 +117,7 @@ nav a{color: var(--color-text); text-decoration: none;
     justify-content: center;
     width: 100%;}
     .column a{
+        font-size: 1.15rem;
         text-decoration: none;}
         .column a:hover{
             text-decoration: underline;}
@@ -242,7 +244,7 @@ p{font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;}
 .p2{font-family: var(--font-display); text-align: center;}
 .passage-lead{text-align: center; font-style: italic; padding-top: 40px; line-height: 1px;}
 .story{margin: 0 auto; font-size: min(1.1rem, 3.8vw); text-indent: 60px;}
-.quote{margin: 40px auto; width: 90%; font-size: min(1.1rem, 3.8vw);}
+.quote{margin: 20px auto; width: 90%; font-size: min(1.1rem, 3.8vw); color: var(--color-text-alt);}
 
 /*Buttons—————————————————————————————————————————————————————————————————————————————————*/
 .back{
