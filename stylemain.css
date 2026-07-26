@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Cormorant+SC:wght@300;400&display=swap');
-html{height: 100%;}
+html{height: 100%; scroll-behavior: smooth;}
 :root{
     --color-bg: #1b1b1d;
     --color-bg-alt: #141416;
@@ -188,7 +188,7 @@ nav a{color: var(--color-text); text-decoration: none;
 .flex-img{height: auto; width: min(500px, 80vw); margin: 30px;}
 .flex-img--left{float: left;}
 .flex-img--right{float: right;}
-.flex-img--long{width: min(750px, 80vw);}
+.flex-img--long{width: min(750px, 80vw); margin-bottom: 0;}
 .flex-img--center{float: none; display: block; width: 95%; margin: 30px auto;}
 
 .gradient{
@@ -220,17 +220,14 @@ nav a{color: var(--color-text); text-decoration: none;
 
 /*Text/Styles—————————————————————————————————————————————————————————————————————————————*/
 a{color: var(--color-text); text-decoration: underline; text-decoration-thickness: 1px;}
-
-
-
-
 /*! Fix and organize link hierarchy. */
     /* Keep note of whether the link text is actually a link vs. a figcaption. */
     /* text-decoration-thickness: 1px; */
 
 h1{font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 300; text-align: center;}
 h2{font-size: clamp(1rem, 10vw, 3.5rem); font-weight: 300; text-align: center;}
-h3{font-size: clamp(1.8rem, 5vw, 44px); font-weight: 300; padding-top: 25px; padding-bottom: 10px;}
+h3{font-size: clamp(1.8rem, 5vw, 44px); font-weight: 300; padding-top: 25px; padding-bottom: 10px;
+    .container-2 & {margin-bottom: 0; padding: 0;}}
 h4{font-size: 1.2rem; font-weight: 300; font-family: var(--font-body); text-align: center;}
 .subtext{text-align: center; margin: 0 auto; width: min(1220px, 80vw);}
 .open{font-family: var(--font-display); text-align: center;}
