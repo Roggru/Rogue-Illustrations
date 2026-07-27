@@ -600,17 +600,24 @@ document.addEventListener('DOMContentLoaded', function() {
             captionBtn.classList.remove("visible");
         });
 
-        captionBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            captionText.classList.toggle("show");
-            lightboxInner.classList.toggle("caption-expanded");
-            
-            lightbox.classList.toggle("caption-active");
-            
-            if (lightboxInner.classList.contains("long-layout")) {
-                lightbox.classList.toggle("long-layout-active");
-            }
-        });
+        function toggleCaption(e) {
+                    e.stopPropagation();
+                    captionText.classList.toggle("show");
+                    lightboxInner.classList.toggle("caption-expanded");
+                    lightbox.classList.toggle("caption-active");
+                    
+                    if (lightboxInner.classList.contains("long-layout")) {
+                        lightbox.classList.toggle("long-layout-active");
+                    }
+                }
+
+                captionBtn.addEventListener("click", toggleCaption);
+
+                const captionArea = document.getElementById("caption-area");
+                captionArea.addEventListener("click", (e) => {
+                    if (captionBtn.classList.contains('hidden')) return;
+                    toggleCaption(e);
+                });
 
         document.body.addEventListener("click", (e) => {
             if (lightbox.classList.contains("show")) {

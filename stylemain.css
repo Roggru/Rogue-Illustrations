@@ -5,7 +5,7 @@ html{height: 100%; scroll-behavior: smooth;}
     --color-bg: #1b1b1d;
     --color-bg-alt: #141416;
     --color-text: #FFFFFF;
-    --color-text-alt: #d8d8d8;
+    --color-text-alt: #dcdcdc;
     --color-text-muted: #808080;
     --color-text-link: #ffde90;
     --color-divider: #ffffff25;
@@ -178,9 +178,9 @@ nav a{color: var(--color-text); text-decoration: none;
     margin: 15px;}
     .status + .status, .status + .status-row {margin-top: 1em;}
     .status{font-size: 1.2rem; line-height: 1.4; text-align: center;}
-    .status .label{color: #808080;}
+    .status .label{color: var(--color-text-muted)}
     .status-row{font-size: 1.2rem; display: grid; grid-template-columns: 1fr 1fr;}
-    .status-row .status{border-left: 1px solid #808080;}
+    .status-row .status{border-left: 1px solid var(--color-text-muted)}
     .status-row .status:first-child{text-align: right; padding-right: 10px; border-left: none;}
     .status-row .status:last-child{text-align: left; padding-left: 10px;}
 
@@ -214,8 +214,7 @@ nav a{color: var(--color-text); text-decoration: none;
     background-size: cover;
     background-repeat: no-repeat;
     opacity: .6;
-    width: max(100%, 60vw);
-    height: 100%;
+    width: max(100%, 60vw); height: 100%;
     z-index: -10;}
 
 /*Text/Styles—————————————————————————————————————————————————————————————————————————————*/
