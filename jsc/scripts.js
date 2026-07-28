@@ -3,7 +3,7 @@ function goBack(){
     window.history.back();
 }
 
-//Notification
+// Notification
 const notif = document.querySelector('.notif');
 
 if (notif) {
@@ -17,7 +17,7 @@ if (notif) {
     });
 }
 
-//Overlay
+// Overlay ----
 document.addEventListener("DOMContentLoaded", () => {
     const daemonsTrigger = document.querySelector(".display-move-1");
     const daemonsOverlay = document.querySelector(".DaemonsO");
@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Page List ----
 const cordImageFilename = "Knight-Wander-3.png";
 const pages = 
     ["end.html", 
@@ -79,7 +80,7 @@ function getBasePath() {
 }
 
 
-//Wanderer
+// Wanderer ----
 function setupRandomLink() {
     const box = document.getElementById("shift");
     if (!box) return;
@@ -309,7 +310,7 @@ window.addEventListener("pageshow", (event) => {
     checkCordVisibility();
 });
 
-//Venture
+// Venture
 function checkCordVisibility() {
     const cord = document.querySelector(".cord");
     if (!cord) return;
@@ -355,7 +356,7 @@ function setupCordClickHandler() {
 }
 
 
-//Portfolio
+// Portfolio ----
 let allArtwork = [];
 let showingAll = false;
 
@@ -629,7 +630,7 @@ function fitTitleText(el) {
     }
 }
 
-// Lightbox
+// Lightbox ----
 let lightbox, lightboxImg, lightboxTitle, lightboxInner, containerAllPort, captionBtn, captionText, captionArea;
 
 function cacheLightboxElements() {
@@ -776,7 +777,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Translation
+// Translation ----
 document.addEventListener('DOMContentLoaded', function() {
     const speakElements = document.querySelectorAll('.speak');
     
@@ -879,7 +880,7 @@ function revealText(bkp, bkpT, showTranslation, callback) {
 }
 
 
-//Analects
+// Analects ----
 window.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY + window.innerHeight;
     const pageHeight = document.documentElement.scrollHeight;

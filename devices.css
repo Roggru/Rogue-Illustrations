@@ -43,14 +43,18 @@
         display: flex;
         width: 90%;}
     
-    /* !Fix */
-    /* Fix the right side margin misalignment. */
     .lightbox-inner{padding: 0px;}
     .lightbox img{max-width: 90vw;}
     .lightbox img.long{max-width: 90vw;}
 
 
 /* Divine */
+    .db-list{display: block;}
+        .db-list img{width: 90%;}
+    .column{display: block;}
+        .column img{width: 300px;}
+            
+    .backscape{display: none;}
 
 /* Beasts */
     .bk-list{
@@ -67,15 +71,6 @@
 }
 
 /* @media (max-width: 767px){
-
-    .db-list{display: block;}
-        .db-list img{width: 90%;}
-    .column{display: block;}
-        .column img{width: 300px;}
-            
-    .backscape{display: none;}
-
-
     .passage{width: 85vw; text-align: justify;}
         .quote{margin: 20px auto; width: 75vw;}
     .p2{margin: 20px;}
