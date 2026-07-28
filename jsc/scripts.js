@@ -601,15 +601,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         function toggleCaption(e) {
-                    e.stopPropagation();
-                    captionText.classList.toggle("show");
-                    lightboxInner.classList.toggle("caption-expanded");
-                    lightbox.classList.toggle("caption-active");
-                    
-                    if (lightboxInner.classList.contains("long-layout")) {
-                        lightbox.classList.toggle("long-layout-active");
-                    }
-                }
+            e.stopPropagation();
+
+            const isClosing = captionText.classList.contains("show");
+
+            if (isClosing) {
+
+                const currentWidth = captionText.getBoundingClientRect().width;
+                captionText.style.width = currentWidth + "px";
+                void captionText.offsetWidth;
+
+                captionText.classList.remove("show");
+                captionText.style.width = "0px";
+            } else {
+                captionText.classList.add("show");
+                captionText.style.width = "";
+            }
+
+            lightboxInner.classList.toggle("caption-expanded");
+            lightbox.classList.toggle("caption-active");
+
+            if (lightboxInner.classList.contains("long-layout")) {
+                lightbox.classList.toggle("long-layout-active");
+            }
+        }
 
                 captionBtn.addEventListener("click", toggleCaption);
 

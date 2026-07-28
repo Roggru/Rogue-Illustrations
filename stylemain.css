@@ -186,9 +186,9 @@ nav a{color: var(--color-text); text-decoration: none;
 
 /*Images/Effects——————————————————————————————————————————————————————————————————————————*/
 .flex-img{height: auto; width: min(500px, 80vw); margin: 30px;}
-.flex-img--left{float: left;}
-.flex-img--right{float: right;}
-.flex-img--long{width: min(750px, 80vw); margin-bottom: 0;}
+.flex-img--left{float: left; margin-bottom: 0;}
+.flex-img--right{float: right; margin-bottom: 0;}
+.flex-img--long{width: min(750px, 80vw); margin-bottom: 10px;}
 .flex-img--center{float: none; display: block; width: 95%; margin: 30px auto;}
 
 .gradient{
