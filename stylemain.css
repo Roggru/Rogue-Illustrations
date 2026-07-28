@@ -248,7 +248,7 @@ p{font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;}
     filter: invert(1);
 
     cursor: pointer;
-    z-index: 9999;
+    z-index: 999;
 
     opacity: 0;
     transform: translateY(15px);

@@ -567,13 +567,21 @@ function attachLightboxListeners() {
             document.body.classList.add("lightbox-active");
 
             requestAnimationFrame(() => {
-                fitTitleText(lightboxTitle);
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(() => {
+                        fitTitleText(lightboxTitle);
+                    });
+                } else {
+                    fitTitleText(lightboxTitle);
+                }
             });
         });
     });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    document.fonts.load('1em "Cormorant SC"').catch(() => {});
+    
     loadArtwork();
 
     const swapBtn = document.getElementById("swapBtn");
