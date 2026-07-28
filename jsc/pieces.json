@@ -56,11 +56,32 @@
         "isLong": false
     },
     {
+        "src": "Images/Art/StS - The Demon.png",
+        "title": "The Demon of the Spire",
+        "caption": "",
+        "category": "portfolio",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/World Walker.jpg",
+        "title": "World Walker",
+        "caption": "",
+        "category": "story",
+        "isLong": true
+    },
+    {
         "src": "Images/Art/Unbinding.jpg",
         "title": "Unbinding",
         "caption": "",
         "category": "portfolio",
         "isLong": false
+    },
+    {
+        "src": "Images/Art/Order of the Griffin.jpg",
+        "title": "Victoria",
+        "caption": "",
+        "category": "portfolio",
+        "isLong": true
     },
     {
         "src": "Images/Art/Reprisal.jpg",
@@ -75,27 +96,6 @@
         "caption": "Once there was a land enshrouded by night. It was at the mercy of a heaven filled with faraway gleams, and a gentle cold that never left its comfort. This one was finite, its horizons reachable which ended against the palms of the black night. None ventured further, as sentries crowned with horns and baring teeth guarded the two halves like a border of two realms. Nothing escaped beyond, for this was their world which bled in dark sky. So, the reticent people who dwelled here chased the stars like moths to a flame, hearts hungering for a light they never knew nor met a warmth from. Their ancestors wrote that night was all they needed, for their comfort was in the hands of their neighbors. But—someday—their unborn young would be offered the temptation of those stars. <br><br>Even in the dark of days did men bleed. They too warred, and fought for a dream within a cage, within a cage. <br><br>But then there was one warrior; unknown and untrodden. Within their hand was a weapon whose edge ended the conflicts of mortality; whose material broke the certainty of spirit; whose handle never lost the comfort of warmth. Within the other—an outspread emptiness. The warrior spoke not from its frightening, devilish gaze, yet they knew all the same. <br><br>Today will be the day.",
         "category": "portfolio",
         "isLong": false
-    },
-    {
-        "src": "Images/Art/Dragon Blue.jpg",
-        "title": "Immensity",
-        "caption": "",
-        "category": "story",
-        "isLong": false
-    },
-    {
-        "src": "Images/Art/World Walker.jpg",
-        "title": "World Walker",
-        "caption": "",
-        "category": "story",
-        "isLong": true
-    },
-    {
-        "src": "Images/Art/Order of the Griffin.jpg",
-        "title": "Victoria",
-        "caption": "",
-        "category": "portfolio",
-        "isLong": true
     },
     {
         "src": "Images/Art/Suffer of Envy, Resentment Undying.jpg",
@@ -152,6 +152,13 @@
         "caption": "",
         "category": "portfolio",
         "isLong": true
+    },
+    {
+        "src": "Images/Art/Dragon Blue.jpg",
+        "title": "Immensity",
+        "caption": "",
+        "category": "portfolio",
+        "isLong": false
     },
     {
         "src": "Images/Art/Humanity.jpg",
