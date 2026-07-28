@@ -402,6 +402,9 @@ function preloadAllImages(artworkList) {
 }
 
 function loadArtwork() {
+    const portfolio = document.querySelector('.portfolio');
+    if (!portfolio) return;
+
     const basePath = getBasePath();
     fetch(basePath + 'jsc/pieces.json')
         .then(response => {
