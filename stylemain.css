@@ -118,7 +118,7 @@ nav a:hover::after {transform: scaleX(1);}
     justify-content: center; align-items: center;
     width: 100%;
 
-    img {width: clamp(400px, 20vw, 500px);}
+    img {width: clamp(400px, 20vw, 500px); display: block;}
     figure {padding-top: 40px; padding-bottom: 40px;}
     a {font-size: 1.15rem; text-decoration: none;
         &:hover {text-decoration: underline;}} }
