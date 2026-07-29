@@ -135,12 +135,12 @@ nav a{color: var(--color-text); text-decoration: none;
 
 .bk-list{
     display: flex; align-items: center; justify-content: center;
-    padding: 3rem;
+    padding: 1rem;
 
     img {width: clamp(300px, 20vw, 650px); aspect-ratio: 480 / 580; object-fit: cover;} }
 
 .bk-lane{
-    padding: 3rem;
+    padding: 1rem;
 
     figure {margin: 0; padding: 25px 0;}
     img {width: 100%;}
@@ -150,11 +150,12 @@ nav a{color: var(--color-text); text-decoration: none;
         text-decoration: none;
         &:hover {text-decoration: underline;}} }
 
-.bkslide a{
-    text-decoration: none;
-    &:hover {text-decoration: underline;}
+.bkslide{
+    padding: 1rem;
 
-    img {width: 85%;} }
+    a{text-decoration: none;
+        &:hover {text-decoration: underline;}}
+    img {width: 95%;} }
 
 .classification{
     background-color: #141416;
