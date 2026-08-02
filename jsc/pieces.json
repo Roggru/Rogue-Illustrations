@@ -42,6 +42,13 @@
         "isLong": false
     },
     {
+        "src": "Images/Art/Home.jpg",
+        "title": "Home",
+        "caption": "",
+        "category": "story",
+        "isLong": false
+    },
+    {
         "src": "Images/Art/Single Headed Hydra.png",
         "title": "Single Headed Hydra",
         "caption": "",
@@ -91,11 +98,39 @@
         "isLong": true
     },
     {
+        "src": "Images/Art/Wrath of the Warbearer.jpg",
+        "title": "Wrath of the Warbearer",
+        "caption": "",
+        "category": "portfolio",
+        "isLong": false
+    },
+    {
+        "src": "Images/Art/The Path of Onus.jpg",
+        "title": "The Path of Onus",
+        "caption": "",
+        "category": "story",
+        "isLong": true
+    },
+    {
+        "src": "Images/Art/Dark Embrace.jpg",
+        "title": "Dark Embrace",
+        "caption": "",
+        "category": "story",
+        "isLong": true
+    },
+    {
         "src": "Images/Art/The Second Virago.jpg",
         "title": "The Second Virago",
         "caption": "Once there was a land enshrouded by night. It was at the mercy of a heaven filled with faraway gleams, and a gentle cold that never left its comfort. This one was finite, its horizons reachable which ended against the palms of the black night. None ventured further, as sentries crowned with horns and baring teeth guarded the two halves like a border of two realms. Nothing escaped beyond, for this was their world which bled in dark sky. So, the reticent people who dwelled here chased the stars like moths to a flame, hearts hungering for a light they never knew nor met a warmth from. Their ancestors wrote that night was all they needed, for their comfort was in the hands of their neighbors. But—someday—their unborn young would be offered the temptation of those stars. <br><br>Even in the dark of days did men bleed. They too warred, and fought for a dream within a cage, within a cage. <br><br>But then there was one warrior; unknown and untrodden. Within their hand was a weapon whose edge ended the conflicts of mortality; whose material broke the certainty of spirit; whose handle never lost the comfort of warmth. Within the other—an outspread emptiness. The warrior spoke not from its frightening, devilish gaze, yet they knew all the same. <br><br>Today will be the day.",
         "category": "portfolio",
         "isLong": false
+    },
+    {
+        "src": "Images/Art/Where War Walks.jpg",
+        "title": "Where War Walks",
+        "caption": "",
+        "category": "story",
+        "isLong": true
     },
     {
         "src": "Images/Art/Suffer of Envy, Resentment Undying.jpg",
@@ -105,18 +140,18 @@
         "isLong": false
     },
     {
-        "src": "Images/Art/Wrath of the Warbearer.jpg",
-        "title": "Wrath of the Warbearer",
-        "caption": "",
-        "category": "portfolio",
-        "isLong": false
-    },
-    {
         "src": "Images/Art/Fire Man.jpg",
         "title": "Burning",
         "caption": "",
         "category": "portfolio",
         "isLong": false
+    },
+    {
+        "src": "Images/Art/Apostasy.jpg",
+        "title": "Apostasy",
+        "caption": "",
+        "category": "story",
+        "isLong": true
     },
     {
         "src": "Images/Art/Prime of the Quintessential.jpg",
