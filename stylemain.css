@@ -13,7 +13,7 @@ html{height: 100%; scroll-behavior: smooth;}
     --font-display: "Cormorant SC", serif;
     --font-body: "Cormorant Garamond", serif;}
 
-body{background-color: var(--color-bg); color: var(--color-text); font-family: var(--font-display);}
+body{background-color: var(--color-bg); color: var(--color-text); font-family: var(--font-display); overflow-x: hidden;}
 
 /*Main Containers——————————————————————————————————————————————————————————————————————————*/
 .container-all{
