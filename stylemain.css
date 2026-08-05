@@ -148,7 +148,7 @@ nav a:hover::after {transform: scaleX(1);}
     display: flex; align-items: center; justify-content: center;
     padding: 1rem;
 
-    img {width: clamp(300px, 20vw, 650px); aspect-ratio: 480 / 580; object-fit: cover;} }
+    img {width: clamp(300px, 20vw, 650px); aspect-ratio: 480 / 580; object-fit: cover; object-position: top;} }
 
 .bk-lane{
     padding: 1rem;

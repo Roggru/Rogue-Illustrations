@@ -58,6 +58,7 @@
 
 /* Beasts */
     .bk-list{
+        flex-wrap: wrap;
         padding: 1rem;
         
         figure{margin: 10px;}
