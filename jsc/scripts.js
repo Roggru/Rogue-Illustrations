@@ -19,6 +19,9 @@ if (notif) {
 
 // Overlay ----
 document.addEventListener("DOMContentLoaded", () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) return;
+
     const daemonsTrigger = document.querySelector(".display-move-1");
     const daemonsOverlay = document.querySelector(".DaemonsO");
     
