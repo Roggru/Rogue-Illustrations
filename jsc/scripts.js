@@ -94,29 +94,30 @@ function getBasePath() {
 // Wanderer ----
 function smoothScrollTo(targetY, duration, onComplete) {
     const startY = window.scrollY;
+    const startX = window.scrollX;
     const distance = targetY - startY;
     const startTime = performance.now();
- 
+
     function easeInOutCubic(t) {
         return t < 0.5
             ? 4 * t * t * t
             : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
- 
+
     function step(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const eased = easeInOutCubic(progress);
- 
-        window.scrollTo(0, startY + distance * eased);
- 
+
+        window.scrollTo(startX, startY + distance * eased);
+
         if (progress < 1) {
             requestAnimationFrame(step);
         } else if (onComplete) {
             onComplete();
         }
     }
- 
+
     requestAnimationFrame(step);
 }
 
@@ -172,7 +173,10 @@ function setupRandomLink() {
         const verticalOffset = 150;
         const rect = box.getBoundingClientRect();
         const elementCenterY = rect.top + window.scrollY + (rect.height / 2);
-        const targetScrollY = elementCenterY - (window.innerHeight / 2) - verticalOffset;
+        const rawTarget = elementCenterY - (window.innerHeight / 2) - verticalOffset;
+
+        const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+        const targetScrollY = Math.max(0, Math.min(rawTarget, maxScrollY));
 
         const startVideo = () => {
             const updatedRect = box.getBoundingClientRect();
