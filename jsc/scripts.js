@@ -94,30 +94,29 @@ function getBasePath() {
 // Wanderer ----
 function smoothScrollTo(targetY, duration, onComplete) {
     const startY = window.scrollY;
-    const startX = window.scrollX;
     const distance = targetY - startY;
     const startTime = performance.now();
-
+ 
     function easeInOutCubic(t) {
         return t < 0.5
             ? 4 * t * t * t
             : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
-
+ 
     function step(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const eased = easeInOutCubic(progress);
-
-        window.scrollTo(startX, startY + distance * eased);
-
+ 
+        window.scrollTo(0, startY + distance * eased);
+ 
         if (progress < 1) {
             requestAnimationFrame(step);
         } else if (onComplete) {
             onComplete();
         }
     }
-
+ 
     requestAnimationFrame(step);
 }
 
@@ -138,6 +137,8 @@ function setupRandomLink() {
         img1.style.opacity = 1;
         img2.style.opacity = 0;
         document.body.style.overflow = "";
+        document.documentElement.style.scrollBehavior = "";
+        document.body.style.scrollBehavior = "";
         document.querySelectorAll(".dynamic-shift-cover").forEach(el => el.remove());
         const text = document.getElementById("sequence-text");
         if (text) text.remove();
@@ -163,6 +164,9 @@ function setupRandomLink() {
     link.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem("cordEnabled", "true");
+
+        document.documentElement.style.scrollBehavior = "auto";
+        document.body.style.scrollBehavior = "auto";
 
         hasBeenClicked = true;
         img1.style.opacity = 0;
