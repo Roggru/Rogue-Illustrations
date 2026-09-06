@@ -92,6 +92,34 @@ function getBasePath() {
 
 
 // Wanderer ----
+function smoothScrollTo(targetY, duration, onComplete) {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+ 
+    function easeInOutCubic(t) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+ 
+    function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+ 
+        window.scrollTo(0, startY + distance * eased);
+ 
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else if (onComplete) {
+            onComplete();
+        }
+    }
+ 
+    requestAnimationFrame(step);
+}
+
 function setupRandomLink() {
     const box = document.getElementById("shift");
     if (!box) return;
@@ -223,28 +251,9 @@ function setupRandomLink() {
             startVideo();
             return;
         }
-
-        window.scrollTo({
-            top: targetScrollY,
-            left: window.scrollX,
-            behavior: "smooth"
-        });
-
-        let scrollTimeout;
-        const onScroll = () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                window.removeEventListener("scroll", onScroll);
-                startVideo();
-            }, 50);
-        };
-
-        window.addEventListener("scroll", onScroll);
-
-        scrollTimeout = setTimeout(() => {
-            window.removeEventListener("scroll", onScroll);
-            startVideo();
-        }, 1000);
+ 
+        const SCROLL_DURATION = 1400;
+        smoothScrollTo(targetScrollY, SCROLL_DURATION, startVideo);
     });
 }
 
