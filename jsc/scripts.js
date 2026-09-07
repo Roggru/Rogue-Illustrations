@@ -168,6 +168,9 @@ function setupRandomLink() {
         document.documentElement.style.scrollBehavior = "auto";
         document.body.style.scrollBehavior = "auto";
 
+        const video = sequenceContainer.querySelector("video");
+        if (video && video.readyState < 3) {video.load();}
+
         hasBeenClicked = true;
         img1.style.opacity = 0;
         img2.style.opacity = 1;
@@ -304,12 +307,11 @@ function playVideoSequence(container, startRect, onComplete) {
     video.style.zIndex = "99999";
     
     void video.offsetWidth;
+    video.currentTime = 0.5;
     
     requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            video.play().catch(err => {
-                console.error("Video play failed:", err);
-            });
+        video.play().catch(err => {
+            console.error("Video play failed:", err);
         });
     });
     
@@ -623,7 +625,6 @@ function repositionAll() {
 
     const isMobile = window.innerWidth <= 768;
     const artworkList = [...currentFigures.keys()].map(src => ({ src }));
-    // Rebuild in DOM order so masonry columns fill consistently with the visual order
     const orderedSrcs = Array.from(portfolio.children).map(fig => fig.dataset.src).filter(Boolean);
 
     if (isMobile) {
