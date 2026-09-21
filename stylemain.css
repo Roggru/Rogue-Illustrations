@@ -204,13 +204,15 @@ nav a:hover::after {transform: scaleX(1);}
 
 .backscape{
     position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50%; top: 0; 
+    height: var(--scape-height, 100%); width: auto;
+    aspect-ratio: var(--scape-ratio, 900 / 1500);
+    transform: translateX(-50%) translateY(var(--scape-y, 0)) scale(var(--scape-scale, 1));
+    background-image: var(--scape-src);
     background-position: center top;
-    background-size: cover;
+    background-size: auto 100%;
     background-repeat: no-repeat;
     opacity: .6;
-    width: max(100%, 60vw); height: 100%;
     z-index: -10;}
 
 a:hover figure:not(.display-move) img{filter: brightness(110%); transition:filter 0.3s ease;}

@@ -30,6 +30,7 @@
     .flex-img--left, .flex-img--right{float: none; display: block; margin: 0 auto;}
 
     .gradient{display: none;}
+    .backscape{display: none;}
 
 /* Portfolio */
     .container-all-port{width: 100%;}
