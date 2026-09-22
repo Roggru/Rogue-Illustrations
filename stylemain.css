@@ -208,7 +208,6 @@ nav a:hover::after {transform: scaleX(1);}
     height: var(--scape-height, 100%); width: auto;
     aspect-ratio: var(--scape-ratio, 900 / 1500);
     transform: translateX(-50%) translateY(var(--scape-y, 0)) scale(var(--scape-scale, 1));
-    background-image: var(--scape-src);
     background-position: center top;
     background-size: auto 100%;
     background-repeat: no-repeat;
