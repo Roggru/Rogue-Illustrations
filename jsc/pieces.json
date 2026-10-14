@@ -135,9 +135,9 @@
     {
         "src": "Images/Art/Where War Walks.jpg",
         "title": "Where War Walks",
-        "caption": "",
+        "caption": "Torn may our march be; <br>Heavy will our steel hold. <br>A thousand steps to the gates of new <br>To wither and wisp of our tested flame. <br>Burn bright our night and stain our day; <br>Oh, come them both for our test of old. <br>Be our strength and our will, <br>For it is in you where war walks.",
         "category": "story",
-        "isLong": true
+        "isLong": false
     },
     {
         "src": "Images/Art/Suffer of Envy, Resentment Undying.jpg",
