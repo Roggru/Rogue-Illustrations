@@ -28,6 +28,7 @@
             height: auto;}
 
     .flex-img--left, .flex-img--right{float: none; display: block; margin: 0 auto;}
+    .flex-img--long, .flex-img--center{margin: 0; width: 100%;}
 
     .gradient{display: none;}
     .backscape{display: none;}
@@ -47,8 +48,8 @@
         width: 90%;}
     
     .lightbox-inner{padding: 0px;}
-    .lightbox img{max-width: 90vw;}
-    .lightbox img.long{max-width: 90vw;}
+    .lightbox img{max-width: 95vw;}
+    .lightbox img.long{max-width: 95vw;}
 
 
 /* Divine */
@@ -62,10 +63,11 @@
 /* Beasts */
     .bk-list{
         flex-wrap: wrap;
-        padding: 1rem;
+        padding: 0;
+        gap: 0;
         
-        figure{margin: 10px;}
-        img{width: clamp(100px, 40vw, 300px);}}
+        figure{margin: 2px; width: calc(50% - 4px);}
+        img{width: 100%;}}
     .bk-lane a{width: 100%;}
     .bkslide a{img{width: 100%;}}
 
