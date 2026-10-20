@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<script src="jsc/scripts.js"></script>
+<script src="jsc/scripts.js" defer></script>
 
 <button onclick="goBack()" class="back">
     <img src="Images/back.png" alt="Back">
@@ -82,13 +82,19 @@
     <div class="container-1">
         <h2 style="margin-bottom: 0;">The Harbingers</h2>
         <p class="subtext">Heralds of a dread whom command the fate of the World.</p>
-        <div class="bkslide">
-            <a href="./beasts/namelessruin.html">
-                <figure>
-                    <img src="./Images/Art/The Black Eclipse.png">
-                    <figcaption>The Nameless Ruin</figcaption>
-                </figure>
-            </a>
+        <div class="bkslide" data-slide>
+            <button class="slide-prev" data-slide-button="prev">&#10094;</button>
+            <button class="slide-next" data-slide-button="next">&#10095;</button>
+            <ul data-slides>
+                <li data-active>
+                    <a href="./beasts/namelessruin.html">
+                        <figure>
+                            <img src="./Images/Art/The Black Eclipse.png">
+                            <figcaption>The Nameless Ruin</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 

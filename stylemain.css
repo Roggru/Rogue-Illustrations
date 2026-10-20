@@ -162,11 +162,22 @@ nav a:hover::after {transform: scaleX(1);}
         &:hover {text-decoration: underline;}} }
 
 .bkslide{
+    position: relative;
     padding: 1rem;
+    margin: 0 auto;
+    width: 85%;
 
-    a{text-decoration: none;
+    a{
+        display: inline-block;
+        width: fit-content;
+        text-decoration: none;
         &:hover {text-decoration: underline;}}
-    img {width: 95%;} }
+    figure {margin: 0;}
+    img {display: block; width: 100%;} 
+    ul {margin: 0; padding: 0; list-style: none; position: relative; aspect-ratio: 16 / 9;}
+    
+    li {position: absolute; opacity: 0;}
+    li[data-active] {opacity: 1; z-index: 1;}}
 
 .classification{
     background-color: #141416;
@@ -266,12 +277,24 @@ p{font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;}
     img {width: 70%; height: 70%; object-fit: contain;} }
 
 .cord{
-    position: fixed; display: none;
-    transform-origin: bottom left;
-    bottom: 0; left: .5vw;
-    transform: translateY(30px);
+    position: fixed; display: none; pointer-events: none;
+    inset: 0;
+    overflow: hidden;
+    --margin: max(0px, calc(50vw - 600px));
     
-    img {width: 16.5vw;} }
+    img {position: absolute; bottom: 0; display: block; -webkit-user-drag: none;} }
+
+.cord-left img{
+    left: .5vw;
+    width: 16.5vw;
+    transform: translateY(30px);
+    pointer-events: auto;}
+.cord-right img{
+    right: max(-240px, calc(-288px + (var(--margin) - 360px) * 0.55));
+    width: 35vw;
+    transform: translateY(30px);
+    transform-origin: bottom right;
+    pointer-events: auto;}
 
 .dot{
     margin: 15px auto;
@@ -280,6 +303,18 @@ p{font-family: var(--font-body); font-size: 1.1rem; line-height: 1.6;}
     border-radius: 50%;
     background-color: #ffff;
     cursor: pointer;}
+
+.bkslide button{
+    position: absolute;
+    background: none; border: none;
+    top: 50%; transform: translateY(-50%);
+    font-size: 6rem;
+    color: var(--color-text);
+    
+    cursor: pointer;
+    z-index: 3;}
+    .slide-prev {left: -80px;}
+    .slide-next {right: -80px;}
 
 html {scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.3) transparent;}
 html::-webkit-scrollbar {width: 8px;}

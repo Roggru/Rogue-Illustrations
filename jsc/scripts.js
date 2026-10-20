@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Page List ----
 const cordImageFilename = "Knight-Wander-3.png";
+const cordRightImageFilename = "Onward.png"
 const pages = 
     ["end.html", 
     //--//
@@ -349,6 +350,7 @@ function checkCordVisibility() {
     if (page === "" || page === "index.html") {
         localStorage.removeItem("cordEnabled");
         localStorage.removeItem("cordDisabled");
+        localStorage.removeItem("cordVisited");
         cord.style.display = "none";
         return;
     }
@@ -366,22 +368,84 @@ function checkCordVisibility() {
         return;
     }
 
-    const cordImg = cord.querySelector("img");
-    if (!cordImg) return;
+    markCurrentVisited();
 
     const basePath = getBasePath();
-    cordImg.src = basePath + "jsc/Knight-Wander-3.png";
+
+    const leftImg = cord.querySelector(".cord-left img");
+    const rightImg = cord.querySelector(".cord-right img");
+
+    if (leftImg) leftImg.src = basePath + "jsc/" + cordImageFilename;
+    // if (rightImg) rightImg.src = basePath + "jsc/" + cordRightImageFilename;
+
+    //! Remove
+    const cordRightEnabled = false;
+    const rightLink = cord.querySelector(".cord-right");
+    if (cordRightEnabled) {
+        if (rightImg) rightImg.src = basePath + "jsc/" + cordRightImageFilename;
+    } else if (rightLink) {
+        rightLink.style.display = "none";
+    }
+
     cord.style.display = "block";
 }
 
-function setupCordClickHandler() {
-    const cord = document.querySelector(".cord");
-    if (!cord) return;
+function getVisited() {
+    try {
+        return JSON.parse(localStorage.getItem("cordVisited")) || [];
+    } catch {
+        return [];
+    }
+}
 
-    cord.addEventListener("click", (event) => {
+function markCurrentVisited() {
+    const page = window.location.pathname.split("/").pop().toLowerCase();
+    const entry = pages.find(p => p.split("/").pop().toLowerCase() === page);
+    if (!entry) return;
+
+    const visited = getVisited();
+    if (!visited.includes(entry)) {
+        visited.push(entry);
+        localStorage.setItem("cordVisited", JSON.stringify(visited));
+    }
+}
+
+function setupCordClickHandler() {
+    const link = document.querySelector(".cord-left");
+    const cord = document.querySelector(".cord");
+    if (!link || !cord) return;
+
+    link.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem("cordDisabled", "true");
         cord.style.display = "none";
+    });
+}
+
+function setupCordNextHandler() {
+    const next = document.querySelector(".cord-right");
+    if (!next) return;
+
+    next.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const current = window.location.pathname.split("/").pop().toLowerCase();
+        const isCurrent = p => p.split("/").pop().toLowerCase() === current;
+
+        let visited = getVisited();
+        let remaining = pages.filter(p => !visited.includes(p) && !isCurrent(p));
+
+        if (remaining.length === 0) {
+            const currentEntry = pages.find(isCurrent);
+            visited = currentEntry ? [currentEntry] : [];
+            localStorage.setItem("cordVisited", JSON.stringify(visited));
+            remaining = pages.filter(p => !isCurrent(p));
+        }
+
+        const pool = remaining.length ? remaining : pages;
+        const target = pool[Math.floor(Math.random() * pool.length)];
+
+        window.location.href = getBasePath() + target;
     });
 }
 
@@ -806,6 +870,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupRandomLink();
     checkCordVisibility();
     setupCordClickHandler();
+    setupCordNextHandler();
 });
 
 
