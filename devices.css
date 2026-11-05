@@ -70,6 +70,7 @@
         img{width: 100%;}}
     .bk-lane a{width: 100%;}
     .bkslide a{img{width: 100%;}}
+    .bkslide button{display: none; pointer-events: none;}
 
 
 
