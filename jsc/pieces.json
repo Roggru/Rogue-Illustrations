@@ -219,8 +219,8 @@
     {
         "src": "Images/Art/Belief.jpg",
         "title": "Belief",
-        "caption": "",
+        "caption": "They saw her shadow cast and body burst, and in their creeds they thought her something to fear. But it was not that they blamed her, nor that they berated her cause and call. It was that she believed them. That she accepted the lie that her name held sin. It does not. It will not. Not while I breathe.",
         "category": "story",
-        "isLong": true
+        "isLong": false
     }
 ]
