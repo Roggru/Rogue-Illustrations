@@ -225,8 +225,8 @@ nav a:hover::after {transform: scaleX(1);}
     opacity: .6;
     z-index: -10;}
 
-a:hover figure:not(.display-move) img{filter: brightness(110%); transition:filter 0.3s ease;}
-figure:not(.display-move) img{transition:filter 0.3s ease;}
+a:hover figure:not(.display-move):not(.portfolio figure) img{filter: brightness(110%); transition:filter 0.3s ease;}
+figure:not(.display-move):not(.portfolio figure) img{transition:filter 0.3s ease;}
 
 /*Text/Styles—————————————————————————————————————————————————————————————————————————————*/
 a{color: var(--color-text); text-decoration: underline; text-decoration-thickness: 1px;}
