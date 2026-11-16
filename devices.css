@@ -3,6 +3,8 @@
     .container-1{padding-bottom: 0;}
     .container-2{width: 100%;}
 
+    nav a{margin-top: 18px;}
+
     .display{flex-direction: column;}  
 
     .grid-wander{
@@ -32,6 +34,7 @@
 
     .gradient{display: none;}
     .backscape{display: none;}
+    .marginscape{display: none;}
 
 /* Portfolio */
     .container-all-port{width: 100%;}
