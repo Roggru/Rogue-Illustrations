@@ -226,6 +226,19 @@ nav a:hover::after {transform: scaleX(1);}
     background-repeat: no-repeat;
     opacity: .6;
     z-index: -10;}
+.marginscape{
+    position: fixed;
+    top: var(--art-top, 100px); bottom: 0;
+    width: var(--art-w, max(300px, calc((100vw - max(min(90vw, 1500px), 75vw)) * 1.1 - 100px)));
+
+    background-image: var(--art); 
+    background-size: var(--art-size, contain);
+    background-repeat: no-repeat;
+    background-position: var(--art-x, center) var(--art-y, top);
+    z-index: -11;
+
+    &.left{left: 0; --art-x: left;}
+    &.right{right: 0; --art-x: right;}}
 
 a:hover figure:not(.display-move):not(.portfolio figure) img{filter: brightness(110%); transition:filter 0.3s ease;}
 figure:not(.display-move):not(.portfolio figure) img{transition:filter 0.3s ease;}

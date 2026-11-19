@@ -78,6 +78,10 @@
 
 
     .back{display: none; pointer-events: none;}
+
+/* Analects */
+    .container-2.osteon{padding-bottom: 0;}
+    
 }
 
 /* @media (max-width: 767px){

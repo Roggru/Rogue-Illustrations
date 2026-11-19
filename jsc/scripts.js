@@ -80,7 +80,7 @@ const pages =
     //--// 
     "beasts/enera.html", "beasts/rahznir.html", "beasts/namelessruin.html",
     //--//
-    // "analects/osteon.html"
+    "analects/osteon.html"
     ];
 
 function getBasePath() {
