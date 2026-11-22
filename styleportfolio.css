@@ -1,10 +1,10 @@
-.container-all-port{
+.container-all-port {
     margin: 0 auto;
     width: max(min(90vw, 1500px), 75vw);
     opacity: 0; transform: translateY(15px);
     animation: slideUp .5s ease-out forwards;}
 
-.portfolio{
+.portfolio {
     position: relative;
     padding-bottom: 50px;
 
@@ -44,7 +44,66 @@ body.lightbox-active::after {
     pointer-events: none;
     transition: filter 0.3s ease;}
 
-.button-space{ margin: 0 auto; margin-top: 20px; margin-bottom: 100px; text-align: center;}
+.porttoggle {
+    --toggle-size: clamp(1.15rem, 0.75rem + 1.2vw, 1.8rem);
+    --gap: 0.30em;
+    --pad-y: 0.35em;
+    --line-w: 2px; 
+
+    --slide-speed: var(--dur-base, 380ms);
+    --slide-ease: var(--ease-smooth, cubic-bezier(.65, 0, .35, 1));
+    --hover-speed: var(--dur-fast, 200ms);
+
+    position: relative;
+    display: grid;
+    width: fit-content;
+    margin: 50px auto; padding: 0; border: 0;
+    background: transparent;
+    color: var(--color-text, inherit);
+    opacity: 65%;
+    font-family: var(--font-display, inherit); 
+    font-size: var(--toggle-size); line-height: 1.2;
+    cursor: pointer;
+
+    transition: opacity var(--hover-speed) ease-in-out;
+        &:hover {opacity: 1;}}
+
+.porttoggle:focus-visible {outline: 2px solid currentColor; outline-offset: 4px;}
+
+.toggle__line {
+    position: absolute;
+    top: var(--pad-y); bottom: var(--pad-y); left: 0;
+    width: var(--line-w);
+    background: currentColor;
+    opacity: 0;
+    mask-image: linear-gradient(to bottom, transparent, white 20%, white 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, white 20%, white 80%, transparent);
+    transition:
+        left var(--slide-speed) var(--slide-ease),
+        opacity var(--hover-speed) ease-out;}
+    .porttoggle[data-state="off"] .toggle__line {left: calc(100% - var(--line-w));}
+    .porttoggle:hover .toggle__line, .porttoggle:focus-visible .toggle__line {opacity: 1;}
+
+.toggle__label {
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    padding-block: var(--pad-y);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: clip-path var(--slide-speed) var(--slide-ease);}
+
+    .toggle__label--on {
+        justify-content: flex-start;
+        padding-left: calc(var(--line-w) + var(--gap));
+        clip-path: inset(0 0 0 var(--line-w)); }
+    .porttoggle[data-state="off"] .toggle__label--on {clip-path: inset(0 0 0 100%); }
+
+    .toggle__label--off {
+        justify-content: flex-end;
+        padding-right: calc(var(--line-w) + var(--gap));
+        clip-path: inset(0 100% 0 0); }
+    .porttoggle[data-state="off"] .toggle__label--off {clip-path: inset(0 var(--line-w) 0 0); }
 
 /* Lightbox */
 .lightbox {
