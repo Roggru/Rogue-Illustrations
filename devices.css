@@ -36,6 +36,8 @@
     .backscape{display: none;}
     .marginscape{display: none;}
 
+    .story{text-indent: 30px;}
+
 /* Portfolio */
     .container-all-port{width: 100%;}
     .portfolio{
